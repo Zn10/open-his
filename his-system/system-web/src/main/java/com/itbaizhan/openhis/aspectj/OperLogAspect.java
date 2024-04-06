@@ -2,10 +2,10 @@ package com.itbaizhan.openhis.aspectj;
 
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
-import com.itbaizhan.openhis.domain.SimpleUser;
 import com.itbaizhan.openhis.aspectj.enums.BusinessStatus;
 import com.itbaizhan.openhis.domain.OperLog;
-import com.itbaizhan.openhis.OperLogService;
+import com.itbaizhan.openhis.domain.SimpleUser;
+import com.itbaizhan.openhis.service.OperLogService;
 import com.itbaizhan.openhis.utils.AddressUtils;
 import com.itbaizhan.openhis.utils.IpUtils;
 import com.itbaizhan.openhis.utils.ServletUtils;

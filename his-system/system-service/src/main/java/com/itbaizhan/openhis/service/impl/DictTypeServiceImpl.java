@@ -1,16 +1,16 @@
-package com.itbaizhan.openhis.impl;
+package com.itbaizhan.openhis.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itbaizhan.openhis.DictTypeService;
 import com.itbaizhan.openhis.constants.Constants;
 import com.itbaizhan.openhis.domain.DictData;
 import com.itbaizhan.openhis.domain.DictType;
 import com.itbaizhan.openhis.dto.DictTypeDto;
 import com.itbaizhan.openhis.mapper.DictDataMapper;
 import com.itbaizhan.openhis.mapper.DictTypeMapper;
+import com.itbaizhan.openhis.service.DictTypeService;
 import com.itbaizhan.openhis.vo.DataGridView;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

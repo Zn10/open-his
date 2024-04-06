@@ -1,5 +1,4 @@
-package com.itbaizhan.openhis;
-
+package com.itbaizhan.openhis.service;
 import com.itbaizhan.openhis.domain.RoleMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 

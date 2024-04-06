@@ -1,4 +1,4 @@
-package com.itbaizhan.openhis;
+package com.itbaizhan.openhis.service;
 
 import com.itbaizhan.openhis.domain.LoginInfo;
 import com.baomidou.mybatisplus.extension.service.IService;

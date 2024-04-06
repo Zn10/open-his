@@ -1,7 +1,7 @@
 package com.itbaizhan.openhis.controller.system;
 
-import com.itbaizhan.openhis.DictTypeService;
 import com.itbaizhan.openhis.dto.DictTypeDto;
+import com.itbaizhan.openhis.service.DictTypeService;
 import com.itbaizhan.openhis.vo.AjaxResult;
 import com.itbaizhan.openhis.vo.DataGridView;
 import org.springframework.beans.factory.annotation.Autowired;

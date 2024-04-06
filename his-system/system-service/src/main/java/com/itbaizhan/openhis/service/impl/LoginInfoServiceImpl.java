@@ -1,12 +1,12 @@
-package com.itbaizhan.openhis.impl;
+package com.itbaizhan.openhis.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itbaizhan.openhis.LoginInfoService;
 import com.itbaizhan.openhis.domain.LoginInfo;
 import com.itbaizhan.openhis.dto.LoginInfoDto;
 import com.itbaizhan.openhis.mapper.LoginInfoMapper;
+import com.itbaizhan.openhis.service.LoginInfoService;
 import com.itbaizhan.openhis.vo.DataGridView;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

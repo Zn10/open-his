@@ -1,14 +1,14 @@
-package com.itbaizhan.openhis.impl;
+package com.itbaizhan.openhis.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itbaizhan.openhis.NoticeService;
 import com.itbaizhan.openhis.domain.Notice;
 import com.itbaizhan.openhis.dto.NoticeDto;
 import com.itbaizhan.openhis.mapper.NoticeMapper;
+import com.itbaizhan.openhis.service.NoticeService;
 import com.itbaizhan.openhis.vo.DataGridView;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

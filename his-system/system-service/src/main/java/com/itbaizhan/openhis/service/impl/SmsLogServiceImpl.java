@@ -1,9 +1,9 @@
-package com.itbaizhan.openhis.impl;
+package com.itbaizhan.openhis.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itbaizhan.openhis.SmsLogService;
 import com.itbaizhan.openhis.domain.SmsLog;
 import com.itbaizhan.openhis.mapper.SmsLogMapper;
+import com.itbaizhan.openhis.service.SmsLogService;
 import org.springframework.stereotype.Service;
 
 /**

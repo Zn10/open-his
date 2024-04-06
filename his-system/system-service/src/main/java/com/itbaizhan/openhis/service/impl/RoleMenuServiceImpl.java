@@ -1,9 +1,9 @@
-package com.itbaizhan.openhis.impl;
+package com.itbaizhan.openhis.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itbaizhan.openhis.RoleMenuService;
 import com.itbaizhan.openhis.domain.RoleMenu;
 import com.itbaizhan.openhis.mapper.RoleMenuMapper;
+import com.itbaizhan.openhis.service.RoleMenuService;
 import org.springframework.stereotype.Service;
 
 /**

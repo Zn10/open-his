@@ -1,9 +1,9 @@
-package com.itbaizhan.openhis.impl;
+package com.itbaizhan.openhis.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itbaizhan.openhis.RoleUserService;
 import com.itbaizhan.openhis.domain.RoleUser;
 import com.itbaizhan.openhis.mapper.RoleUserMapper;
+import com.itbaizhan.openhis.service.RoleUserService;
 import org.springframework.stereotype.Service;
 
 /**

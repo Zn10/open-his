@@ -1,10 +1,10 @@
 package com.itbaizhan.openhis.controller.system;
 
-import com.itbaizhan.openhis.DictDataService;
 import com.itbaizhan.openhis.dto.DictDataDto;
+import com.itbaizhan.openhis.service.DictDataService;
+import com.itbaizhan.openhis.utils.ShiroSecurityUtils;
 import com.itbaizhan.openhis.vo.AjaxResult;
 import com.itbaizhan.openhis.vo.DataGridView;
-import com.itbaizhan.openhis.utils.ShiroSecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

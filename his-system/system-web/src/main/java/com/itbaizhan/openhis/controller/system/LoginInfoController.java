@@ -1,7 +1,7 @@
 package com.itbaizhan.openhis.controller.system;
 
 import com.itbaizhan.openhis.dto.LoginInfoDto;
-import com.itbaizhan.openhis.LoginInfoService;
+import com.itbaizhan.openhis.service.LoginInfoService;
 import com.itbaizhan.openhis.vo.AjaxResult;
 import com.itbaizhan.openhis.vo.DataGridView;
 import org.springframework.beans.factory.annotation.Autowired;
