@@ -1,0 +1,1661 @@
+/*
+SQLyog Community v13.1.6 (64 bit)
+MySQL - 5.7.28-log : Database - sxt_his
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`sxt_his` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `sxt_his`;
+
+/*Table structure for table `his_care_history` */
+
+DROP TABLE IF EXISTS `his_care_history`;
+
+CREATE TABLE `his_care_history` (
+  `ch_id` varchar(25) NOT NULL COMMENT '病历ID',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '医生id',
+  `user_name` varchar(20) DEFAULT NULL COMMENT '医生姓名',
+  `patient_id` varchar(25) DEFAULT NULL COMMENT '患者id',
+  `patient_name` varchar(30) DEFAULT NULL COMMENT '患者姓名',
+  `dept_id` bigint(20) DEFAULT NULL COMMENT '科室id',
+  `dept_name` varchar(20) DEFAULT NULL COMMENT '科室名称',
+  `receive_type` char(1) DEFAULT '0',
+  `is_contagious` char(1) DEFAULT NULL COMMENT '是否传染，0否，1是 字典表属性his_contagious_status',
+  `care_time` datetime DEFAULT NULL COMMENT '就诊时间',
+  `case_date` varchar(15) DEFAULT NULL COMMENT '发病日期',
+  `reg_id` varchar(25) DEFAULT NULL COMMENT '挂号单号',
+  `case_title` varchar(100) DEFAULT NULL COMMENT '主诉',
+  `case_result` varchar(200) DEFAULT NULL COMMENT '诊断信息',
+  `doctor_tips` varchar(300) DEFAULT NULL COMMENT '医生建议',
+  `remark` varchar(200) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`ch_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='病例表';
+
+/*Data for the table `his_care_history` */
+
+insert  into `his_care_history`(`ch_id`,`user_id`,`user_name`,`patient_id`,`patient_name`,`dept_id`,`dept_name`,`receive_type`,`is_contagious`,`care_time`,`case_date`,`reg_id`,`case_title`,`case_result`,`doctor_tips`,`remark`) values 
+('1',1001,'高主任','0001','张三',101,'内科','0','0','2030-01-01 00:00:00','2030-11-01','1','头疼','脑瘤','手术切除',NULL),
+('2',1001,'高主任','0002','李四',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','2','胃疼','胃癌','手术切除',NULL),
+('CH1463686948676829184',2,'扁鹊','HZ1263653571396763648','唐太宗',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','GH1463681727015813120','肝疼','肝癌','手术切除','不打麻药'),
+('CH1463770152989491200',2,'扁鹊','HZ1271368119784439808','孙七',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','GH1463689842704646144','胸闷','肺病','中西医结合治疗',''),
+('CH1465223559688355840',2,'扁鹊','HZ1271368119784439809','李六',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','GH1465223238866042880','气喘','肺病','中西医结合治疗',NULL),
+('CH1465858430131634176',2,'扁鹊','HZ1268724157491838976','张三',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','GH1465857699643260928','皮肤骚痒','牛皮癣','中药药浴加西药涂抹','每周一次，三个月后复诊'),
+('CH1468494219910971392',2,'扁鹊','HZ1263654020086628352','唐高宗',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','GH1468493543218741248','便秘','痔疮','手术切除','局部麻醉'),
+('CH1473130538821877760',2,'扁鹊','HZ1263653571396763648','唐太宗',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','GH1473130244562092032','脚气','真菌感染','中药药浴加西药涂抹',NULL),
+('CH1473139493832884224',2,'扁鹊','HZ1263654020086628352','唐高宗',101,'内科','0','0','2030-01-01 00:00:00','2030-11-03','GH1473130742694412288','骨折','胫骨骨折','接骨手术','fdsasdf'),
+('CH1491676756845920256',2,'扁鹊','HZ1268724157491838976','张三',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1491658830780694528','dfdffdf','fdadsfdsfsdaf','fdsafsdfsadf','fdsafsdfdsafdsfdsaf'),
+('CH1491953497824952320',2,'扁鹊','HZ1263654020086628352','唐高宗',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1491953326055620608','aaaaaaaa','aaaaaaaaaaaa','bbbbbbbbbbbbb','ccccccccccc'),
+('CH1492055304635023360',2,'扁鹊','HZ1491320266792501248','赵六',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1492055128893685760','dsfdsafdsfadsf','fdsafsdfdsaf','aaaaaaaaaaaaa','fffffffffffffff'),
+('CH1492070530851930112',2,'扁鹊','HZ1271368119784439809','李六',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1492070435314073600','aaaaaaaaa','abbbbbbbbbbbbbb','ccccccccccccc','ddddddddddddd'),
+('CH1493824924714926080',2,'扁鹊','HZ1491320266792501248','赵六',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1493824823447650304','aaaaaaaaaaaaaa','bbbbbbbbbbbbbb','vvvvvvvvvvvvvvvvvvvvv','dddddddddddddddddd'),
+('CH1493829762278359040',2,'扁鹊','HZ1271368119784439808','孙七',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1493829695786057728','基','dddddddddd','dgggggggggggg','tttttttttttttttttt'),
+('CH1493918427318976512',2,'扁鹊','HZ1491320266792501248','赵六',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1493918310247563264','aaaaaaaaaaaa','bbbbbbbbbbbbb','ccccccccccccccc','dddddddddddddddddd'),
+('CH1493920842021732352',2,'扁鹊','HZ1263654020086628352','唐高宗',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1493920771536453632','aaaaaaaaaa','bbbbbbbbbbb','cccccccccccccccc','ddddddddddddddd'),
+('CH1494211236915707904',2,'扁鹊','HZ1491320266792501248','赵六',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1494211175783727104','aaaaaaaaaa','aaaaaaaaaaaa','bbbbbbbbbbbbbb','cvcccccccccccccccc'),
+('CH1495938356847181824',2,'扁鹊','HZ1491320266792501248','赵六',101,'内科','0','0','2030-01-01 00:00:00','2030-01-01','GH1495938281500704768','aaaaaaaaaa','bbbbbbbbbbbbbb','vccccccccccccc','ddddddddddddddd');
+
+/*Table structure for table `his_care_order` */
+
+DROP TABLE IF EXISTS `his_care_order`;
+
+CREATE TABLE `his_care_order` (
+  `co_id` varchar(25) NOT NULL COMMENT '处方ID',
+  `co_type` char(1) DEFAULT NULL COMMENT '处方类型0药用处方1检查处方',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '医生id',
+  `patient_id` varchar(25) DEFAULT NULL COMMENT '患者id',
+  `patient_name` varchar(30) DEFAULT NULL COMMENT '患者姓名',
+  `ch_id` varchar(25) DEFAULT NULL COMMENT '关联病历id',
+  `all_amount` decimal(10,2) DEFAULT NULL COMMENT '处方全额',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`co_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='药用处方表';
+
+/*Data for the table `his_care_order` */
+
+insert  into `his_care_order`(`co_id`,`co_type`,`user_id`,`patient_id`,`patient_name`,`ch_id`,`all_amount`,`create_by`,`create_time`,`update_by`,`update_time`) values 
+('1','1',101,'2','李四','1',100.00,'扁鹊','2030-01-01 00:00:00',NULL,NULL),
+('2','1',101,'2','李四','2',100.00,'扁鹊','2030-01-01 00:00:00',NULL,NULL),
+('CO1463771831843553280','1',2,'HZ1263653571396763648','唐太宗','CH1463686948676829184',5.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1463792414127947776','1',2,'HZ1263653571396763648','唐太宗','CH1463686948676829184',235.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1465223982138654720','0',2,'HZ1271368119784439809','李六','CH1465223559688355840',4.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1465244346835140608','1',2,'HZ1271368119784439809','李六','CH1465223559688355840',70.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1465859052708954112','0',2,'HZ1268724157491838976','张三','CH1465858430131634176',1020.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1465859107805331456','1',2,'HZ1268724157491838976','张三','CH1465858430131634176',5.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1468495011426467840','0',2,'HZ1263654020086628352','唐高宗','CH1468494219910971392',4.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1468495087804743680','1',2,'HZ1263654020086628352','唐高宗','CH1468494219910971392',30.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1473139529044066304','1',2,'HZ1263654020086628352','唐高宗','CH1473139493832884224',30.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1491966969774211072','1',2,'HZ1263654020086628352','唐高宗','CH1491953497824952320',20.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1492070585562431488','0',2,'HZ1271368119784439809','李六','CH1492070530851930112',6.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1492070621335650304','1',2,'HZ1271368119784439809','李六','CH1492070530851930112',85.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1493824971674353664','0',2,'HZ1491320266792501248','赵六','CH1493824924714926080',8.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1493829800513634304','1',2,'HZ1271368119784439808','孙七','CH1493829762278359040',85.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1493918468813225984','0',2,'HZ1491320266792501248','赵六','CH1493918427318976512',8.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1493920880273784832','1',2,'HZ1263654020086628352','唐高宗','CH1493920842021732352',55.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1494211265776713728','1',2,'HZ1491320266792501248','赵六','CH1494211236915707904',105.00,'扁鹊','2030-01-01 00:00:00','',NULL),
+('CO1495938421573681152','1',2,'HZ1491320266792501248','赵六','CH1495938356847181824',35.00,'扁鹊','2030-01-01 00:00:00','',NULL);
+
+/*Table structure for table `his_care_order_item` */
+
+DROP TABLE IF EXISTS `his_care_order_item`;
+
+CREATE TABLE `his_care_order_item` (
+  `item_id` varchar(25) NOT NULL COMMENT '开诊明细ID',
+  `co_id` varchar(25) DEFAULT NULL COMMENT '所属处方id',
+  `item_ref_id` varchar(25) DEFAULT NULL COMMENT '药品或者检查项目id',
+  `item_name` varchar(30) DEFAULT NULL COMMENT '药品或检查项目名称',
+  `item_type` char(1) DEFAULT NULL COMMENT '项目类型0药品  还是1检查项',
+  `num` decimal(10,2) DEFAULT NULL COMMENT '数量',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '单价',
+  `amount` decimal(10,2) DEFAULT NULL COMMENT '金额',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `status` char(1) DEFAULT NULL COMMENT '状态，0未支付，1已支付，2，已退费  3，已完成 字典表his_order_details_status',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`item_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='开诊细表';
+
+/*Data for the table `his_care_order_item` */
+
+insert  into `his_care_order_item`(`item_id`,`co_id`,`item_ref_id`,`item_name`,`item_type`,`num`,`price`,`amount`,`remark`,`status`,`create_time`) values 
+('100','1','1','脑心通','1',2.00,20.00,20.00,'abdf','0','2030-01-01 00:00:00'),
+('101','2','2','核磁共振','1',1.00,800.00,800.00,'城','2','2030-01-01 00:00:00'),
+('ITEM1223444545454545455','CO1473139529044066305','37','浮小麦','1',5.00,2.00,10.00,NULL,'0','2030-01-01 00:00:00'),
+('ITEM1223444545454545456','CO1473139529044066305','38','覆盆子',NULL,5.00,2.00,10.00,NULL,'0','2030-01-01 00:00:00'),
+('ITEM1463792414710956032','CO1463792414127947776','2','核磁共振','1',1.00,880.00,880.00,'过度检查，没有必要','3','2030-01-01 00:00:00'),
+('ITEM1465223982444838912','CO1465223982138654720','1','阿胶珠','0',1.00,2.00,2.00,'请按说明服用','3','2030-01-01 00:00:00'),
+('ITEM1465223982742634496','CO1465223982138654720','2','醋艾炭','0',1.00,2.00,2.00,'请按说明服用','2','2030-01-01 00:00:00'),
+('ITEM1465244347254571008','CO1465244346835140608','3','CT','1',1.00,50.00,50.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1465244347548172288','CO1465244346835140608','4','X光','1',1.00,20.00,20.00,'按要求检查','3','2030-01-01 00:00:00'),
+('ITEM1465859053044498432','CO1465859052708954112','37','浮小麦','0',200.00,2.00,400.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1465859053338099712','CO1465859052708954112','38','覆盆子','0',150.00,2.00,300.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1465859053631700992','CO1465859052708954112','39','木通','0',160.00,2.00,320.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1465859108073766912','CO1465859107805331456','2','血常规','1',1.00,5.00,5.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1468495011778789376','CO1468495011426467840','1','阿胶珠','0',1.00,2.00,2.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1468495012093362176','CO1468495011426467840','2','醋艾炭','0',1.00,2.00,2.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1468495088119316480','CO1468495087804743680','1','乙肝五项','1',1.00,30.00,30.00,'按要求检查','0','2030-01-01 00:00:00'),
+('ITEM1473130596451614720','CO1473130596132847616','1','阿胶珠','0',4.00,2.00,8.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1473130596753604608','CO1473130596132847616','2','醋艾炭','0',5.00,2.00,10.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1473139529341861888','CO1473139529044066304','1','乙肝五项','1',1.00,30.00,30.00,'按要求检查','1','2030-01-01 00:00:00'),
+('ITEM1491966969837125632','CO1491966969774211072','4','X光','1',1.00,20.00,20.00,'按要求检查','0','2030-01-01 00:00:00'),
+('ITEM1492055373698433024','CO1492055373631324160','2','醋艾炭','0',4.00,2.00,8.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1492055373719404544','CO1492055373631324160','3','制巴戟天','0',4.00,2.00,8.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1492055373731987456','CO1492055373631324160','4','白蔹','0',5.00,2.00,10.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1492055411170344960','CO1492055411149373440','1','乙肝五项','1',1.00,30.00,30.00,'按要求检查','0','2030-01-01 00:00:00'),
+('ITEM1492055411191316480','CO1492055411149373440','2','血常规','1',1.00,5.00,5.00,'按要求检查','0','2030-01-01 00:00:00'),
+('ITEM1492070585583403008','CO1492070585562431488','1','阿胶珠','0',1.00,2.00,2.00,'请按说明服用','2','2030-01-01 00:00:00'),
+('ITEM1492070585604374528','CO1492070585562431488','2','醋艾炭','0',1.00,2.00,2.00,'请按说明服用','2','2030-01-01 00:00:00'),
+('ITEM1492070585621151744','CO1492070585562431488','3','制巴戟天','0',1.00,2.00,2.00,'请按说明服用','2','2030-01-01 00:00:00'),
+('ITEM1492070621360816128','CO1492070621335650304','1','乙肝五项','1',1.00,30.00,30.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1492070621377593344','CO1492070621335650304','2','血常规','1',1.00,5.00,5.00,'按要求检查','1','2030-01-01 00:00:00'),
+('ITEM1492070621390176256','CO1492070621335650304','3','CT','1',1.00,50.00,50.00,'按要求检查','1','2030-01-01 00:00:00'),
+('ITEM1493824971716296704','CO1493824971674353664','2','醋艾炭','0',1.00,2.00,2.00,'请按说明服用','3','2030-01-01 00:00:00'),
+('ITEM1493824971728879616','CO1493824971674353664','3','制巴戟天','0',1.00,2.00,2.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1493824971741462528','CO1493824971674353664','4','白蔹','0',1.00,2.00,2.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1493824971758239744','CO1493824971674353664','5','白果','0',1.00,2.00,2.00,'请按说明服用','0','2030-01-01 00:00:00'),
+('ITEM1493829800534605824','CO1493829800513634304','1','乙肝五项','1',1.00,30.00,30.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1493829800563965952','CO1493829800513634304','2','血常规','1',1.00,5.00,5.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1493829800572354560','CO1493829800513634304','3','CT','1',1.00,50.00,50.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1493918468867751936','CO1493918468813225984','4','白蔹','0',1.00,2.00,2.00,'请按说明服用','1','2030-01-01 00:00:00'),
+('ITEM1493918468884529152','CO1493918468813225984','5','白果','0',1.00,2.00,2.00,'请按说明服用','1','2030-01-01 00:00:00'),
+('ITEM1493918468897112064','CO1493918468813225984','6','白芨','0',1.00,2.00,2.00,'请按说明服用','2','2030-01-01 00:00:00'),
+('ITEM1493918468909694976','CO1493918468813225984','7','白芍','0',1.00,2.00,2.00,'请按说明服用','2','2030-01-01 00:00:00'),
+('ITEM1493920880294756352','CO1493920880273784832','2','血常规','1',1.00,5.00,5.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1493920880311533568','CO1493920880273784832','3','CT','1',1.00,50.00,50.00,'按要求检查','2','2030-01-01 00:00:00'),
+('ITEM1494211265818656768','CO1494211265776713728','1','乙肝五项','1',1.00,30.00,30.00,'按要求检查','3','2030-01-01 00:00:00'),
+('ITEM1494211265839628288','CO1494211265776713728','2','血常规','1',1.00,5.00,5.00,'按要求检查','3','2030-01-01 00:00:00'),
+('ITEM1494211265856405504','CO1494211265776713728','3','CT','1',1.00,50.00,50.00,'按要求检查','3','2030-01-01 00:00:00'),
+('ITEM1494211265868988416','CO1494211265776713728','4','X光','1',1.00,20.00,20.00,'按要求检查','3','2030-01-01 00:00:00'),
+('ITEM1495938421619818496','CO1495938421573681152','1','乙肝五项','1',1.00,30.00,30.00,'按要求检查','0','2030-01-01 00:00:00'),
+('ITEM1495938421636595712','CO1495938421573681152','2','血常规','1',1.00,5.00,5.00,'按要求检查','0','2030-01-01 00:00:00'),
+('ITEM3232132323213232323','CO1473139529044066306','2','核磁共振','1',1.00,800.00,800.00,NULL,'0','2030-01-01 00:00:00'),
+('ITEM4324324324324324344','CO1473139529044066306','2','血常规','1',1.00,5.00,5.00,NULL,'0','2030-01-01 00:00:00');
+
+/*Table structure for table `his_check_result` */
+
+DROP TABLE IF EXISTS `his_check_result`;
+
+CREATE TABLE `his_check_result` (
+  `coc_id` varchar(25) NOT NULL COMMENT '处方检查项ID',
+  `check_item_id` int(11) DEFAULT NULL COMMENT '检查项目ID',
+  `check_item_name` varchar(255) DEFAULT NULL COMMENT '检查项目名称',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '价格',
+  `reg_id` varchar(25) DEFAULT NULL COMMENT '挂号id',
+  `result_msg` varchar(255) DEFAULT NULL COMMENT '检查结果描述',
+  `result_img` json DEFAULT NULL COMMENT '检查结果扫描附件[json表示]',
+  `patient_id` varchar(25) DEFAULT NULL COMMENT '患者ID',
+  `patient_name` varchar(25) DEFAULT NULL COMMENT '患者姓名',
+  `result_status` char(1) DEFAULT NULL COMMENT '是否录入检查结果0 检测中  1 检测完成  字典表 his_check_result_status',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`coc_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+/*Data for the table `his_check_result` */
+
+insert  into `his_check_result`(`coc_id`,`check_item_id`,`check_item_name`,`price`,`reg_id`,`result_msg`,`result_img`,`patient_id`,`patient_name`,`result_status`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+('ITEM1463771832669831168',2,'血常规',5.00,'GH1463681727015813120','未见异常',NULL,'HZ1263653571396763648','唐太宗','1','2030-01-01 17:19:29','2030-01-01 17:19:29','扁鹊','扁鹊'),
+('ITEM1463792414710956032',2,'核磁共振',880.00,'GH1463681727015813120','dfadsfdsaf','[{\"url\": \"http://192.168.139.128:8888/group1/M00/00/00/wKiLgGGu1QCAe-0hAAFxVgWEEEY86.jpeg\", \"name\": \"营业执照.jpeg\"}]','HZ1263653571396763648','唐太宗','1','2030-01-01 17:19:29','2030-01-01 17:19:29','扁鹊','扁鹊'),
+('ITEM1465244347548172288',4,'X光',20.00,'GH1465223238866042880','未见异常','[{\"url\": \"http://192.168.139.128:8888/group1/M00/00/00/wKiLgGIPEcqAA3WdAAB47pYzXHs816.jpg\", \"name\": \"checkresult1.jpg\"}]','HZ1271368119784439809','李六','1','2030-01-01 17:19:29','2030-01-01 17:19:29','扁鹊','扁鹊'),
+('ITEM1494211265818656768',1,'乙肝五项',30.00,'GH1494211175783727104','未见异常2','[{\"url\": \"http://192.168.139.128:8888/group1/M00/00/00/wKiLgGIPEcqAA3WdAAB47pYzXHs816.jpg\", \"name\": \"checkresult1.jpg\"}, {\"url\": \"http://192.168.139.128:8888/group1/M00/00/00/wKiLgGIPEhOAUkjBAABzT_donmI675.jpg\", \"name\": \"checkresult2.jpg\"}]','HZ1491320266792501248','赵六','1','2030-01-01 17:19:29','2030-01-01 17:19:29','扁鹊','扁鹊'),
+('ITEM1494211265839628288',2,'血常规',5.00,'GH1494211175783727104','大规模','[{\"url\": \"http://192.168.139.128:8888/group1/M00/00/00/wKiLgGIPElWAaYgNAAEBrtaXFrk458.jpg\", \"name\": \"checkresult4.jpg\"}]','HZ1491320266792501248','赵六','1','2030-01-01 17:19:29','2030-01-01 17:19:29','扁鹊','扁鹊'),
+('ITEM1494211265856405504',3,'CT',50.00,'GH1494211175783727104',NULL,NULL,'HZ1491320266792501248','赵六','0','2030-01-01 17:19:29','2030-01-01 17:19:29','扁鹊',''),
+('ITEM1494211265868988416',4,'X光',20.00,'GH1494211175783727104',NULL,NULL,'HZ1491320266792501248','赵六','0','2030-01-01 17:19:29','2030-01-01 17:19:29','扁鹊','');
+
+/*Table structure for table `his_order_backfee` */
+
+DROP TABLE IF EXISTS `his_order_backfee`;
+
+CREATE TABLE `his_order_backfee` (
+  `back_id` varchar(25) NOT NULL COMMENT '退费ID',
+  `back_amount` decimal(20,0) DEFAULT NULL COMMENT '总费用',
+  `ch_id` varchar(25) DEFAULT NULL COMMENT '病历ID',
+  `reg_id` varchar(25) DEFAULT NULL COMMENT '挂号单',
+  `patient_name` varchar(255) DEFAULT NULL COMMENT '患者名称',
+  `back_status` char(1) DEFAULT NULL COMMENT '订单状态0未退费  1 退费成功 2退费失败  字典表his_backfee_status',
+  `back_type` char(1) DEFAULT NULL COMMENT '退费类型0现金1支付宝  字典表his_pay_type_status',
+  `order_id` varchar(25) DEFAULT NULL COMMENT '关联订单ID his_order_charge  ',
+  `back_platform_id` varchar(50) DEFAULT NULL COMMENT '退费交易ID',
+  `back_time` datetime DEFAULT NULL COMMENT '退费交易时间',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`back_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='退费主表';
+
+/*Data for the table `his_order_backfee` */
+
+insert  into `his_order_backfee`(`back_id`,`back_amount`,`ch_id`,`reg_id`,`patient_name`,`back_status`,`back_type`,`order_id`,`back_platform_id`,`back_time`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+('ODB1460147912326643712',800,'2','2','李四','1','1','ODC1460147514475937792','2021111522001471560501831852','2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODB1465204662889218048',880,'CH1463686948676829184','GH1463681727015813120','唐太宗','1','1','ODC1465201350286639104',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODB1493859982163181568',50,'CH1465223559688355840','GH1465223238866042880','李六','1','0','ODC1465244561478647808',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODB1493882254009696256',85,'CH1493829762278359040','GH1493829695786057728','孙七','1','0','ODC1493830068332527616',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODB1493887273501065216',6,'CH1492070530851930112','GH1492070435314073600','李六','1','0','ODC1492363896919556096',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODB1493888222827249664',5,'CH1465858430131634176','GH1465857699643260928','张三','1','0','ODC1465872958810619904',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODB1493902446462894080',30,'CH1492070530851930112','GH1492070435314073600','李六','1','0','ODC1492363896919556096',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODB1493920226570534912',4,'CH1493918427318976512','GH1493918310247563264','赵六','1','1','ODC1493918789409046528','2022021622001471560502060541','2030-01-01 00:00:00','2030-01-01 00:00:00','2022-02-17 10:14:32','扁鹊',''),
+('ODB1493921321569091584',55,'CH1493920842021732352','GH1493920771536453632','唐高宗','1','0','ODC1493920952969461760',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','2022-02-17 10:14:34','扁鹊','');
+
+/*Table structure for table `his_order_backfee_item` */
+
+DROP TABLE IF EXISTS `his_order_backfee_item`;
+
+CREATE TABLE `his_order_backfee_item` (
+  `item_id` varchar(25) NOT NULL COMMENT '详情ID和his_care_order_*表里面的ID一样',
+  `co_id` varchar(25) DEFAULT NULL COMMENT '处方ID【备用】',
+  `item_name` varchar(25) DEFAULT NULL COMMENT '项目名称',
+  `item_price` decimal(10,2) DEFAULT NULL COMMENT '项目价格',
+  `item_num` int(11) DEFAULT NULL COMMENT '项目数量',
+  `item_amount` decimal(10,0) DEFAULT NULL COMMENT '小计',
+  `back_id` varchar(25) DEFAULT NULL COMMENT '订单ID his_oder_backfee主键',
+  `item_type` char(1) DEFAULT NULL COMMENT '项目类型0药品  还是1检查项',
+  `status` char(1) DEFAULT NULL COMMENT '状态，0未支付，1已支付，2，已退费  3，已完成   字典表 his_order_details_status',
+  PRIMARY KEY (`item_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='退费订单详情表';
+
+/*Data for the table `his_order_backfee_item` */
+
+insert  into `his_order_backfee_item`(`item_id`,`co_id`,`item_name`,`item_price`,`item_num`,`item_amount`,`back_id`,`item_type`,`status`) values 
+('101','2','核磁共振',800.00,1,800,'ODB1460147912326643712','1','2'),
+('ITEM1463792414710956032','CO1463792414127947776','核磁共振',880.00,1,880,'ODB1465204662889218048','1','2'),
+('ITEM1465244347254571008','CO1465244346835140608','CT',50.00,1,50,'ODB1493859982163181568','1','2'),
+('ITEM1465859108073766912','CO1465859107805331456','血常规',5.00,1,5,'ODB1493888222827249664','1','2'),
+('ITEM1492070585583403008','CO1492070585562431488','阿胶珠',2.00,1,2,'ODB1493887273501065216','0','2'),
+('ITEM1492070585604374528','CO1492070585562431488','醋艾炭',2.00,1,2,'ODB1493887273501065216','0','2'),
+('ITEM1492070585621151744','CO1492070585562431488','制巴戟天',2.00,1,2,'ODB1493887273501065216','0','2'),
+('ITEM1492070621360816128','CO1492070621335650304','乙肝五项',30.00,1,30,'ODB1493902446462894080','1','2'),
+('ITEM1493829800534605824','CO1493829800513634304','乙肝五项',30.00,1,30,'ODB1493882254009696256','1','2'),
+('ITEM1493829800563965952','CO1493829800513634304','血常规',5.00,1,5,'ODB1493882254009696256','1','2'),
+('ITEM1493829800572354560','CO1493829800513634304','CT',50.00,1,50,'ODB1493882254009696256','1','2'),
+('ITEM1493918468897112064','CO1493918468813225984','白芨',2.00,1,2,'ODB1493920226570534912','0','2'),
+('ITEM1493918468909694976','CO1493918468813225984','白芍',2.00,1,2,'ODB1493920226570534912','0','2'),
+('ITEM1493920880294756352','CO1493920880273784832','血常规',5.00,1,5,'ODB1493921321569091584','1','2'),
+('ITEM1493920880311533568','CO1493920880273784832','CT',50.00,1,50,'ODB1493921321569091584','1','2');
+
+/*Table structure for table `his_order_charge` */
+
+DROP TABLE IF EXISTS `his_order_charge`;
+
+CREATE TABLE `his_order_charge` (
+  `order_id` varchar(25) NOT NULL COMMENT '收费ID',
+  `order_amount` decimal(20,0) DEFAULT NULL COMMENT '总费用',
+  `ch_id` varchar(25) DEFAULT NULL COMMENT '病历ID',
+  `reg_id` varchar(25) DEFAULT NULL COMMENT '挂号单',
+  `patient_name` varchar(255) DEFAULT NULL COMMENT '患者名称',
+  `order_status` char(1) DEFAULT NULL COMMENT '订单状态0未支付  1 支付成功  2支付超时 3支付失败 字典表his_order_charge_status',
+  `pay_platform_id` varchar(50) DEFAULT NULL COMMENT '支付ID',
+  `pay_time` datetime DEFAULT NULL COMMENT '支付时间',
+  `pay_type` char(1) DEFAULT NULL COMMENT '支付类型0现金1支付宝  字典表his_pay_type_status',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`order_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='收费表';
+
+/*Data for the table `his_order_charge` */
+
+insert  into `his_order_charge`(`order_id`,`order_amount`,`ch_id`,`reg_id`,`patient_name`,`order_status`,`pay_platform_id`,`pay_time`,`pay_type`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+('ODC1460147514475937792',800,'2','2','李四','1','2021111522001471560501831852','2030-01-01 00:00:00','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1465201350286639104',880,'CH1463686948676829184','GH1463681727015813120','唐太宗','1','2021112922001471560501865594','2030-01-01 00:00:00','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1465872958810619904',5,'CH1465858430131634176','GH1465857699643260928','张三','1','2022021622001471560502059156','2030-01-01 00:00:00','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1473139992703401984',225,'CH1473139493832884224','GH1473130742694412288','唐太宗','1',NULL,'2030-01-01 00:00:00','0','2030-01-01 00:00:00','2022-02-16 20:05:30','扁鹊',''),
+('ODC1493825515646222336',2,'CH1493824924714926080','GH1493824823447650304','赵六','1',NULL,'2030-01-01 00:00:00','0','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1493830068332527616',85,'CH1493829762278359040','GH1493829695786057728','孙七','1',NULL,'2030-01-01 00:00:00','0','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1493918768060039168',4,'CH1493918427318976512','GH1493918310247563264','赵六','1',NULL,'2030-01-01 00:00:00','0','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1493918789409046528',4,'CH1493918427318976512','GH1493918310247563264','赵六','1','2022021622001471560502060541','2030-01-01 00:00:00','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1493920952969461760',55,'CH1493920842021732352','GH1493920771536453632','唐高宗','1','2022021622001471560502060542','2030-01-01 00:00:00','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊',''),
+('ODC1495954263883513856',5,'CH1495938356847181824','GH1495938281500704768','赵六','2',NULL,NULL,'1','2030-01-01 00:00:00','2022-02-22 10:55:29','扁鹊','');
+
+/*Table structure for table `his_order_charge_item` */
+
+DROP TABLE IF EXISTS `his_order_charge_item`;
+
+CREATE TABLE `his_order_charge_item` (
+  `item_id` varchar(25) NOT NULL COMMENT '详情ID和his_care_order_*表里面的ID一样',
+  `co_id` varchar(25) DEFAULT NULL COMMENT '处方ID【备用】',
+  `item_name` varchar(25) DEFAULT NULL COMMENT '项目名称',
+  `item_price` decimal(10,2) DEFAULT NULL COMMENT '项目价格',
+  `item_num` int(11) DEFAULT NULL COMMENT '项目数量',
+  `item_amount` decimal(10,0) DEFAULT NULL COMMENT '小计',
+  `order_id` varchar(25) DEFAULT NULL COMMENT '订单IDhis_oder_charge主键',
+  `item_type` char(1) DEFAULT NULL COMMENT '项目类型0药品  还是1检查项',
+  `status` char(1) DEFAULT NULL COMMENT '状态，0未支付，1已支付，2，已退费  3，已完成 字典表 his_order_details_status',
+  PRIMARY KEY (`item_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='支付订单详情表';
+
+/*Data for the table `his_order_charge_item` */
+
+insert  into `his_order_charge_item`(`item_id`,`co_id`,`item_name`,`item_price`,`item_num`,`item_amount`,`order_id`,`item_type`,`status`) values 
+('101','2','核磁共振',800.00,1,800,'ODC1460147514475937792','1','2'),
+('ITEM1463771832669831168','CO1463771831843553280','血常规',5.00,1,225,'ODC1464114264485789696','1','3'),
+('ITEM1463792414710956032','CO1463792414127947776','核磁共振',880.00,1,880,'ODC1465201350286639104','1','3'),
+('ITEM1465223982444838912','CO1465223982138654720','阿胶珠',2.00,1,2,'ODC1465224254806163456','0','3'),
+('ITEM1465223982742634496','CO1465223982138654720','醋艾炭',2.00,1,2,'ODC1465224254806163456','0','3'),
+('ITEM1465244347254571008','CO1465244346835140608','CT',50.00,1,50,'ODC1465244561478647808','1','1'),
+('ITEM1465244347548172288','CO1465244346835140608','X光',20.00,1,20,'ODC1465244561478647808','1','3'),
+('ITEM1465859108073766912','CO1465859107805331456','血常规',5.00,1,5,'ODC1465872958810619904','1','2'),
+('ITEM1473139529341861888','CO1473139529044066304','血常规',5.00,1,225,'ODC1473139992703401984','1','1'),
+('ITEM1492070585583403008','CO1492070585562431488','阿胶珠',2.00,1,2,'ODC1492363896919556096','0','2'),
+('ITEM1492070585604374528','CO1492070585562431488','醋艾炭',2.00,1,2,'ODC1493771258238730240','0','2'),
+('ITEM1492070585621151744','CO1492070585562431488','制巴戟天',2.00,1,2,'ODC1493772258886418432','0','2'),
+('ITEM1492070621360816128','CO1492070621335650304','乙肝五项',30.00,1,30,'ODC1492363896919556096','1','2'),
+('ITEM1492070621377593344','CO1492070621335650304','血常规',5.00,1,5,'ODC1493768249131794432','1','1'),
+('ITEM1492070621390176256','CO1492070621335650304','CT',50.00,1,50,'ODC1493772258886418432','1','1'),
+('ITEM1493824971716296704','CO1493824971674353664','醋艾炭',2.00,1,2,'ODC1493825515646222336','0','3'),
+('ITEM1493829800534605824','CO1493829800513634304','乙肝五项',30.00,1,30,'ODC1493830068332527616','1','2'),
+('ITEM1493829800563965952','CO1493829800513634304','血常规',5.00,1,5,'ODC1493830068332527616','1','2'),
+('ITEM1493829800572354560','CO1493829800513634304','CT',50.00,1,50,'ODC1493830068332527616','1','2'),
+('ITEM1493918468867751936','CO1493918468813225984','白蔹',2.00,1,2,'ODC1493918768060039168','0','1'),
+('ITEM1493918468884529152','CO1493918468813225984','白果',2.00,1,2,'ODC1493918768060039168','0','1'),
+('ITEM1493918468897112064','CO1493918468813225984','白芨',2.00,1,2,'ODC1493918789409046528','0','2'),
+('ITEM1493918468909694976','CO1493918468813225984','白芍',2.00,1,2,'ODC1493918789409046528','0','2'),
+('ITEM1493920880294756352','CO1493920880273784832','血常规',5.00,1,5,'ODC1493920952969461760','1','2'),
+('ITEM1493920880311533568','CO1493920880273784832','CT',50.00,1,50,'ODC1493920952969461760','1','2'),
+('ITEM1494211265818656768','CO1494211265776713728','乙肝五项',30.00,1,30,'ODC1494211403538628608','1','3'),
+('ITEM1494211265839628288','CO1494211265776713728','血常规',5.00,1,5,'ODC1494211403538628608','1','3'),
+('ITEM1494211265856405504','CO1494211265776713728','CT',50.00,1,50,'ODC1494211403538628608','1','3'),
+('ITEM1494211265868988416','CO1494211265776713728','X光',20.00,1,20,'ODC1494211403538628608','1','3'),
+('ITEM1495938421636595712','CO1495938421573681152','血常规',5.00,1,5,'ODC1495954263883513856','1','0');
+
+/*Table structure for table `his_patient` */
+
+DROP TABLE IF EXISTS `his_patient`;
+
+CREATE TABLE `his_patient` (
+  `patient_id` varchar(25) NOT NULL COMMENT '主键',
+  `name` varchar(20) DEFAULT NULL COMMENT '患者姓名',
+  `phone` varchar(11) DEFAULT NULL COMMENT '患者电话',
+  `sex` char(1) NOT NULL DEFAULT '2' COMMENT '患者性别0男1女 2未知字典表 sys_user_sex',
+  `birthday` varchar(25) DEFAULT NULL COMMENT '出生年月',
+  `id_card` char(18) NOT NULL COMMENT '身份证号[认证ID]',
+  `address` varchar(100) DEFAULT NULL COMMENT '地址信息',
+  `allergy_info` varchar(120) DEFAULT NULL COMMENT '过敏信息',
+  `is_final` char(1) NOT NULL DEFAULT '0' COMMENT '是否完善信息，0未完善1已完善 字典表 his_patient_msg_final',
+  `password` varchar(60) DEFAULT NULL COMMENT '登录密码',
+  `openid` varchar(50) DEFAULT NULL COMMENT '微信openid',
+  `last_login_ip` varchar(20) DEFAULT NULL COMMENT '最后登录ip',
+  `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`patient_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='患者信息表';
+
+/*Data for the table `his_patient` */
+
+insert  into `his_patient`(`patient_id`,`name`,`phone`,`sex`,`birthday`,`id_card`,`address`,`allergy_info`,`is_final`,`password`,`openid`,`last_login_ip`,`last_login_time`,`create_time`,`update_time`) values 
+('HZ1263653571396763648','唐太宗','13421331131','0','1980-01-01','42108719900103451X','湖北武汉','青霉素过敏','0','7a96e6f9ea9b71ff31a33cbcc8aa05cc',NULL,NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00'),
+('HZ1263654020086628352','唐高宗','13451311334','0','1960-01-01','431123198011301341','湖北武汉','青霉素过敏','0','df8f0335f6e3fa839609e1a8077fd093',NULL,NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00'),
+('HZ1268724157491838976','张三','13456789021','0','2000-06-08','431113311133314531','武汉',NULL,'0','948219b558a8270876b31eb46cde08d7',NULL,NULL,NULL,'2030-01-01 00:00:00','2022-02-10 15:21:58'),
+('HZ1271368119784439808','孙七','13876787656','2','1990-01-01','431333113331113311','武汉',NULL,'0','a2aa685cd9d1c0e422a1eb8ba72d2096',NULL,NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00'),
+('HZ1271368119784439809','李六','13322222222','1','1991-12-09','610112199112091665','陕西西安',NULL,'0',NULL,NULL,NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00'),
+('HZ1491320266792501248','赵六','13876787656','2','1990-01-01','110113198612150570','北京','','0','a2aa685cd9d1c0e422a1eb8ba72d2096',NULL,NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00');
+
+/*Table structure for table `his_patient_file` */
+
+DROP TABLE IF EXISTS `his_patient_file`;
+
+CREATE TABLE `his_patient_file` (
+  `patient_id` varchar(25) NOT NULL COMMENT '患者id',
+  `emergency_contact_name` varchar(50) DEFAULT NULL COMMENT '紧急联系人',
+  `emergency_contact_phone` varchar(11) DEFAULT NULL COMMENT '紧急联系人电话',
+  `emergency_contact_relation` varchar(50) DEFAULT NULL COMMENT '爸爸,妈妈,儿子,女儿,亲戚,朋友',
+  `left_ear_hearing` varchar(4) DEFAULT NULL COMMENT '左耳听力 正常  耳聋',
+  `right_ear_hearing` varchar(4) DEFAULT NULL COMMENT '右耳听力 正常  耳聋',
+  `left_vision` decimal(10,1) DEFAULT NULL COMMENT '左眼视力',
+  `right_vision` decimal(10,1) DEFAULT NULL COMMENT '右眼视力',
+  `height` decimal(10,2) DEFAULT NULL COMMENT '身高',
+  `weight` decimal(10,2) DEFAULT NULL COMMENT '体重',
+  `blood_type` varchar(20) DEFAULT NULL COMMENT '血型 A  B  AB  O    R-阴 RH-阳',
+  `personal_info` varchar(100) DEFAULT NULL COMMENT '个人史',
+  `family_info` varchar(100) DEFAULT NULL COMMENT '家族史',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`patient_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+/*Data for the table `his_patient_file` */
+
+insert  into `his_patient_file`(`patient_id`,`emergency_contact_name`,`emergency_contact_phone`,`emergency_contact_relation`,`left_ear_hearing`,`right_ear_hearing`,`left_vision`,`right_vision`,`height`,`weight`,`blood_type`,`personal_info`,`family_info`,`create_time`,`update_time`) values 
+('HZ1262957125722832896','张大明','15900131131','张文明','1.1','1.1',5.0,5.0,1.75,60.00,'A','无','父亲心脏病','2030-01-01 00:00:00','2030-01-01 00:00:00');
+
+/*Table structure for table `his_registration` */
+
+DROP TABLE IF EXISTS `his_registration`;
+
+CREATE TABLE `his_registration` (
+  `registration_id` varchar(25) NOT NULL COMMENT '挂号流水',
+  `patient_id` varchar(25) DEFAULT NULL COMMENT '患者ID',
+  `patient_name` varchar(50) DEFAULT NULL COMMENT '患者姓名',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '接诊医生ID',
+  `doctor_name` varchar(50) DEFAULT NULL COMMENT '接诊医生姓名',
+  `dept_id` bigint(20) DEFAULT NULL COMMENT '科室ID',
+  `registration_item_id` bigint(20) DEFAULT NULL COMMENT '挂号费用ID',
+  `registration_amount` decimal(10,2) DEFAULT NULL COMMENT '挂号总金额',
+  `registration_number` int(11) DEFAULT NULL COMMENT '挂号编号',
+  `registration_status` char(1) DEFAULT NULL COMMENT '挂号状态0未收费,1待就诊，2,就诊中，3，就诊完成，4，已退号，5 作废',
+  `visit_date` varchar(30) DEFAULT NULL COMMENT '就诊日期',
+  `scheduling_type` char(1) CHARACTER SET utf8 DEFAULT NULL COMMENT '排班类型1 门诊 2 急诊 字典表数据翻译',
+  `subsection_type` char(1) CHARACTER SET utf8 NOT NULL COMMENT '排班时段1上午  2下午 3晚上 字典表数据翻译',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(30) DEFAULT NULL COMMENT '创建人',
+  PRIMARY KEY (`registration_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+/*Data for the table `his_registration` */
+
+insert  into `his_registration`(`registration_id`,`patient_id`,`patient_name`,`user_id`,`doctor_name`,`dept_id`,`registration_item_id`,`registration_amount`,`registration_number`,`registration_status`,`visit_date`,`scheduling_type`,`subsection_type`,`create_time`,`update_time`,`create_by`) values 
+('3','HZ1271368119784439809','李六',101,'高主任',101,102,200.00,3,'0','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1463681727015813120','HZ1263653571396763648','唐太宗',2,'扁鹊',101,1,6.00,19,'3','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1463687188431634432','HZ1271368119784439809','李六',2,'扁鹊',101,1,6.00,20,'2','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1463689842704646144','HZ1271368119784439808','孙七',2,'扁鹊',101,102,6.00,21,'2','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1465223238866042880','HZ1271368119784439809','李六',2,'扁鹊',101,1,6.00,22,'3','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1465857699643260928','HZ1268724157491838976','张三',2,'扁鹊',101,1,6.00,23,'3','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1468489559485579264','HZ1263654020086628352','唐高宗',2,'扁鹊',101,1,6.00,24,'1','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1468493543218741248','HZ1263654020086628352','唐高宗',2,'扁鹊',101,1,6.00,25,'3','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1473130244562092032','HZ1263653571396763648','唐太宗',2,'扁鹊',101,1,6.00,26,'2','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1473130742694412288','HZ1263654020086628352','唐高宗',2,'扁鹊',101,1,6.00,27,'3','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1491598433205747712','HZ1268724157491838976','张三',NULL,NULL,101,1,NULL,40,'1','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1491619240749432832','HZ1263653571396763648','唐太宗',NULL,NULL,101,1,NULL,41,'1','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1491650673245290496','HZ1263654020086628352','唐高宗',2,'扁鹊',101,1,NULL,42,'2','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1491658830780694528','HZ1268724157491838976','张三',2,'扁鹊',101,1,NULL,43,'2','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1491953326055620608','HZ1263654020086628352','唐高宗',2,'扁鹊',101,1,NULL,44,'3','2030-01-01','1','1','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1492055128893685760','HZ1491320266792501248','赵六',2,'扁鹊',101,1,NULL,45,'3','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1492070435314073600','HZ1271368119784439809','李六',2,'扁鹊',101,1,NULL,46,'3','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1493824823447650304','HZ1491320266792501248','赵六',2,'扁鹊',101,1,NULL,47,'2','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1493829695786057728','HZ1271368119784439808','孙七',2,'扁鹊',101,1,NULL,48,'2','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1493918310247563264','HZ1491320266792501248','赵六',2,'扁鹊',101,3,12.00,49,'2','2030-01-01','2','3','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1493920771536453632','HZ1263654020086628352','唐高宗',2,'扁鹊',101,1,6.00,50,'2','2030-01-01','2','3','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1494211175783727104','HZ1491320266792501248','赵六',2,'扁鹊',101,1,6.00,51,'2','2030-01-01','1','2','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊'),
+('GH1495938281500704768','HZ1491320266792501248','赵六',2,'扁鹊',101,1,6.00,52,'2','2030-01-01','1','1','2030-01-02 00:00:00','2022-02-22 09:53:13','扁鹊');
+
+/*Table structure for table `his_scheduling` */
+
+DROP TABLE IF EXISTS `his_scheduling`;
+
+CREATE TABLE `his_scheduling` (
+  `user_id` int(10) NOT NULL COMMENT '医生ID',
+  `dept_id` int(10) NOT NULL COMMENT '科室ID',
+  `scheduling_day` varchar(50) NOT NULL COMMENT '值班日期',
+  `subsection_type` char(1) NOT NULL COMMENT '排班时段1上午  2下午 3晚上 字典表数据翻译',
+  `scheduling_type` char(1) DEFAULT NULL COMMENT '排班类型1 门诊 2 急诊 字典表数据翻译',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='排班信息表';
+
+/*Data for the table `his_scheduling` */
+
+insert  into `his_scheduling`(`user_id`,`dept_id`,`scheduling_day`,`subsection_type`,`scheduling_type`,`create_time`,`create_by`) values 
+(2,101,'2022-02-10','1','1','2022-02-11 09:52:11','扁鹊'),
+(2,101,'2022-02-11','1','1','2022-02-11 09:52:11','扁鹊'),
+(2,101,'2022-02-10','2','1','2022-02-11 09:52:11','扁鹊'),
+(2,101,'2022-02-11','2','1','2022-02-11 09:52:11','扁鹊'),
+(3,102,'2022-02-11','1','1','2022-02-11 09:52:18','扁鹊'),
+(3,102,'2022-02-11','2','1','2022-02-11 09:52:18','扁鹊'),
+(2,101,'2022-02-16','1','1','2022-02-17 15:24:23','扁鹊'),
+(2,101,'2022-02-17','1','1','2022-02-17 15:24:23','扁鹊'),
+(2,101,'2022-02-16','2','1','2022-02-17 15:24:23','扁鹊'),
+(2,101,'2022-02-17','2','1','2022-02-17 15:24:23','扁鹊'),
+(2,101,'2022-02-16','3','2','2022-02-17 15:24:23','扁鹊'),
+(2,101,'2022-02-22','1','1','2022-02-22 09:47:15','扁鹊'),
+(2,101,'2022-02-22','2','1','2022-02-22 09:47:15','扁鹊');
+
+/*Table structure for table `his_verification_code` */
+
+DROP TABLE IF EXISTS `his_verification_code`;
+
+CREATE TABLE `his_verification_code` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `verification_code` int(6) NOT NULL COMMENT '验证码',
+  `phone_number` varchar(20) DEFAULT NULL COMMENT '手机号',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `is_check` bit(1) DEFAULT b'0' COMMENT '是否已校验',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+/*Data for the table `his_verification_code` */
+
+insert  into `his_verification_code`(`id`,`verification_code`,`phone_number`,`create_time`,`is_check`) values 
+(1,7150,'13319227111','2030-01-01 09:41:34','\0'),
+(2,7259,'13319227111','2030-01-01 09:41:34','\0'),
+(3,2426,'13319227111','2030-01-01 09:41:34','\0'),
+(4,5907,'13319227111','2030-01-01 09:41:34','\0'),
+(5,4913,'13319227111','2030-01-01 09:41:34','\0'),
+(6,6019,'13319227111','2030-01-01 09:41:34','\0'),
+(15,4379,'13319227108','2030-01-01 14:31:44','\0');
+
+/*Table structure for table `stock_inventory_log` */
+
+DROP TABLE IF EXISTS `stock_inventory_log`;
+
+CREATE TABLE `stock_inventory_log` (
+  `inventory_log_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '入库ID',
+  `purchase_id` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '采购单据ID',
+  `medicines_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '药品ID',
+  `inventory_log_num` int(10) DEFAULT NULL COMMENT '入库数量',
+  `trade_price` decimal(10,2) DEFAULT NULL COMMENT '批发价',
+  `prescription_price` decimal(10,2) DEFAULT NULL COMMENT '处方价',
+  `trade_total_amount` decimal(10,2) DEFAULT NULL COMMENT '批发额',
+  `prescription_total_amount` decimal(10,2) DEFAULT NULL COMMENT '处方额',
+  `batch_number` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '药品生产批次号',
+  `medicines_name` varchar(120) CHARACTER SET utf8 DEFAULT '' COMMENT '药品名称',
+  `medicines_type` char(1) CHARACTER SET utf8 DEFAULT '' COMMENT '药品分类 sys_dict_data表his_medicines_type',
+  `prescription_type` char(1) CHARACTER SET utf8 DEFAULT '' COMMENT '处方类型 sys_dict_data表his_prescription_type',
+  `producter_id` varchar(50) CHARACTER SET utf8 DEFAULT '' COMMENT '生产厂家ID',
+  `conversion` int(10) DEFAULT '1' COMMENT '换算量',
+  `unit` varchar(50) CHARACTER SET utf8 DEFAULT '' COMMENT '单位（g/条）',
+  `provider_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '供应商ID',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  PRIMARY KEY (`inventory_log_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+/*Data for the table `stock_inventory_log` */
+
+insert  into `stock_inventory_log`(`inventory_log_id`,`purchase_id`,`medicines_id`,`inventory_log_num`,`trade_price`,`prescription_price`,`trade_total_amount`,`prescription_total_amount`,`batch_number`,`medicines_name`,`medicines_type`,`prescription_type`,`producter_id`,`conversion`,`unit`,`provider_id`,`create_time`,`create_by`) values 
+('1263759287176527872','CG1263758807713054720','1',20,2.00,5.00,40.00,100.00,'P1','阿胶珠','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287189110784','CG1263758807713054720','2',20,2.00,5.00,40.00,100.00,'P1','醋艾炭','1','1','2',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287197499392','CG1263758807713054720','3',20,2.00,5.00,40.00,100.00,'P1','制巴戟天','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287214276608','CG1263758807713054720','4',20,2.00,5.00,40.00,100.00,'P1','白蔹','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287226859520','CG1263758807713054720','5',20,2.00,5.00,40.00,100.00,'P1','白果','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287235248128','CG1263758807713054720','6',20,2.00,5.00,40.00,100.00,'P1','白芨','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287243636736','CG1263758807713054720','7',20,2.00,5.00,40.00,100.00,'P1','白芍','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287256219648','CG1263758807713054720','8',20,2.00,5.00,40.00,100.00,'P1','白英','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287264608256','CG1263758807713054720','9',20,2.00,5.00,40.00,100.00,'P1','白芷','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759287272996864','CG1263758807713054720','10',20,2.00,5.00,40.00,100.00,'P1','炒牵牛子','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1263759752924626944','CG1263759614625841152','1',40,2.00,6.00,80.00,240.00,'P2','阿胶珠','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759752937209856','CG1263759614625841152','2',40,2.00,6.00,80.00,240.00,'P2','醋艾炭','1','1','2',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759752945598464','CG1263759614625841152','3',40,2.00,6.00,80.00,240.00,'P2','制巴戟天','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759752953987072','CG1263759614625841152','4',40,2.00,6.00,80.00,240.00,'P2','白蔹','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759752970764288','CG1263759614625841152','5',40,2.00,6.00,80.00,240.00,'P2','白果','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759752979152896','CG1263759614625841152','6',40,2.00,6.00,80.00,240.00,'P2','白芨','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759752991735808','CG1263759614625841152','7',40,2.00,6.00,80.00,240.00,'P2','白芍','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759753000124416','CG1263759614625841152','8',40,2.00,6.00,80.00,240.00,'P2','白英','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759753008513024','CG1263759614625841152','9',40,2.00,6.00,80.00,240.00,'P2','白芷','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1263759753016901632','CG1263759614625841152','10',40,2.00,6.00,80.00,240.00,'P2','炒牵牛子','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1264762105261850624','CG1264752330314743808','1',20,2.00,NULL,40.00,NULL,'1','阿胶珠','1','1','1',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1264762105278627840','CG1264752330314743808','2',20,2.00,NULL,40.00,NULL,'2','醋艾炭','1','1','2',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1271356423200178176','CG1271356147747651584','2',10,20.00,NULL,200.00,NULL,'21','醋艾炭','1','1','2',1,'g','102','2030-01-01 00:00:00','扁鹊'),
+('1271358744239931392','CG1271358119477379072','1',100,10.00,NULL,1000.00,NULL,'1','阿胶珠','1','1','1',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1271358744252514304','CG1271358119477379072','2',100,10.00,NULL,1000.00,NULL,'2','醋艾炭','1','1','2',1,'g','101','2030-01-01 00:00:00','扁鹊'),
+('1272374036281819136','CG1272373964395642880','8',10,20.00,NULL,200.00,NULL,'1','白英','1','1','1',1,'g',NULL,'2030-01-01 00:00:00','扁鹊'),
+('1272374036294402048','CG1272373964395642880','10',10,20.00,NULL,200.00,NULL,'1','炒牵牛子','1','1','1',1,'g',NULL,'2030-01-01 00:00:00','扁鹊'),
+('1272374036306984960','CG1272373964395642880','9',10,20.00,NULL,200.00,NULL,'1','白芷','1','1','1',1,'g',NULL,'2030-01-01 00:00:00','扁鹊'),
+('1463325869576683520','CG1463325706493755392','4',1000,100.00,NULL,100000.00,NULL,'','白蔹','1','1','1',1,'g',NULL,'2030-01-01 00:00:00','扁鹊'),
+('1463325869878673408','CG1463325706493755392','5',2000,25.50,NULL,51000.00,NULL,'','白果','1','1','1',1,'g',NULL,'2030-01-01 00:00:00','扁鹊'),
+('1487003686235406336','CG1463066821916753922','1',1,1.00,NULL,1.00,NULL,'','阿胶珠','1','1','',1,'g',NULL,'2030-01-01 00:00:00','扁鹊');
+
+/*Table structure for table `stock_medicines` */
+
+DROP TABLE IF EXISTS `stock_medicines`;
+
+CREATE TABLE `stock_medicines` (
+  `medicines_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `medicines_number` varchar(60) DEFAULT '' COMMENT '药品编号',
+  `medicines_name` varchar(120) DEFAULT '' COMMENT '药品名称',
+  `medicines_type` char(1) DEFAULT '' COMMENT '药品分类 sys_dict_data表his_medicines_type',
+  `prescription_type` char(1) DEFAULT '' COMMENT '处方类型 sys_dict_data表his_prescription_type',
+  `prescription_price` decimal(10,2) DEFAULT NULL COMMENT '处方价格',
+  `unit` varchar(50) DEFAULT '' COMMENT '单位（g/条）',
+  `conversion` int(10) DEFAULT '1' COMMENT '换算量',
+  `keywords` varchar(20) DEFAULT '' COMMENT '关键字',
+  `producter_id` varchar(50) DEFAULT '' COMMENT '生产厂家ID',
+  `status` char(1) DEFAULT NULL COMMENT '药品状态0正常0停用 sys_dict_data表 sys_normal_disable',
+  `medicines_stock_num` decimal(10,0) DEFAULT NULL COMMENT '库存量',
+  `medicines_stock_danger_num` decimal(10,0) DEFAULT NULL COMMENT '预警值',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `del_flag` char(1) DEFAULT NULL COMMENT '删除状态0正常0删除 要有重新导入功能',
+  PRIMARY KEY (`medicines_id`) USING BTREE,
+  KEY `medicines_number` (`medicines_number`) USING BTREE,
+  KEY `medicines_name` (`medicines_name`) USING BTREE,
+  KEY `index_keywords` (`keywords`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=545 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='药品信息表';
+
+/*Data for the table `stock_medicines` */
+
+insert  into `stock_medicines`(`medicines_id`,`medicines_number`,`medicines_name`,`medicines_type`,`prescription_type`,`prescription_price`,`unit`,`conversion`,`keywords`,`producter_id`,`status`,`medicines_stock_num`,`medicines_stock_danger_num`,`create_time`,`update_time`,`create_by`,`update_by`,`del_flag`) values 
+(1,'sxt0001','阿胶珠','1','1',2.00,'g',1,'ajz','1','0',200,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','扁鹊','0'),
+(2,'sxt0002','醋艾炭','1','1',2.00,'g',1,'cat','2','0',208,100,'2030-01-01 00:00:00','2022-02-17 12:46:57','超级管理员','扁鹊','0'),
+(3,'sxt0003','制巴戟天','1','1',2.00,'g',1,'zbjt','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(4,'sxt0004','白蔹','1','1',2.00,'g',1,'bl','1','0',1100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','扁鹊','0'),
+(5,'sxt0005','白果','1','1',2.00,'g',1,'bg','1','0',2100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','扁鹊','0'),
+(6,'sxt0006','白芨','1','1',2.00,'g',1,'bj','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(7,'sxt0007','白芍','1','1',2.00,'g',1,'bs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(8,'sxt0008','白英','1','1',2.00,'g',1,'by','1','0',110,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','扁鹊','0'),
+(9,'sxt0009','白芷','1','1',2.00,'g',1,'bz','1','0',110,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','扁鹊','0'),
+(10,'sxt0010','炒牵牛子','1','1',2.00,'g',1,'cqnz','1','0',110,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','扁鹊','0'),
+(11,'sxt0011','白豆蔻','1','1',2.00,'g',1,'bdk','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(12,'sxt0012','制白附子','1','1',2.00,'g',1,'zbfz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(13,'sxt0013','金钱白花蛇','1','1',2.00,'条',1,'jqbhs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(14,'sxt0014','白花蛇舌草','1','1',2.00,'g',1,'bhssc','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(15,'sxt0015','半枝莲','1','1',2.00,'g',1,'bzl','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(16,'sxt0016','盐蒺藜','1','1',2.00,'g',1,'yjl','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(17,'sxt0017','白梅花','1','1',2.00,'g',1,'bmh','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(18,'sxt0018','白前','1','1',2.00,'g',1,'bq','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(19,'sxt0019','白头翁','1','1',2.00,'g',1,'btw','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(20,'sxt0020','白薇','1','1',2.00,'g',1,'bw','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(21,'sxt0021','白鲜皮','1','1',2.00,'g',1,'bxp','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(22,'sxt0022','百合','1','1',2.00,'g',1,'bh','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(23,'sxt0023','柏子仁','1','1',2.00,'g',1,'bzr','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(24,'sxt0024','北败酱草','1','1',2.00,'g',1,'bbjc','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(25,'sxt0025','板蓝根','1','1',2.00,'g',1,'blg','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(26,'sxt0026','北沙参','1','1',2.00,'g',1,'bss','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(27,'sxt0027','荜茇','1','1',2.00,'g',1,'bb','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(28,'sxt0028','绵萆薢','1','1',2.00,'g',1,'mbx','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(29,'sxt0029','萹蓄','1','1',2.00,'g',1,'bx','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(30,'sxt0030','醋鳖甲','1','1',2.00,'g',1,'cbj','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(31,'sxt0031','薄荷','1','1',2.00,'g',1,'bh','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(32,'sxt0032','伏龙肝','1','1',2.00,'g',1,'flg','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(33,'sxt0033','茯苓','1','1',2.00,'g',1,'fl','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(34,'sxt0034','茯苓皮','1','1',2.00,'g',1,'flp','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(35,'sxt0035','茯神','1','1',2.00,'g',1,'fs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(36,'sxt0036','浮萍','1','1',2.00,'g',1,'fp','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(37,'sxt0037','浮小麦','1','1',2.00,'g',1,'fxm','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(38,'sxt0038','覆盆子','1','1',2.00,'g',1,'fpz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(39,'sxt0039','木通','1','1',2.00,'g',1,'mt','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(40,'sxt0040','山慈菇','1','1',2.00,'g',1,'scg','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(41,'sxt0041','广藿香','1','1',2.00,'g',1,'ghx','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(42,'sxt0042','干姜','1','1',2.00,'g',1,'gj','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(43,'sxt0043','甘草','1','1',2.00,'g',1,'gc','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(44,'sxt0044','甘松','1','1',2.00,'g',1,'gs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(45,'sxt0045','高良姜','1','1',2.00,'g',1,'glj','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(46,'sxt0046','藁本','1','1',2.00,'g',1,'gb','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(47,'sxt0047','葛根','1','1',2.00,'g',1,'gg','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(48,'sxt0048','钩藤','1','1',2.00,'g',1,'gt','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(49,'sxt0049','烫狗脊','1','1',2.00,'g',1,'tgj','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(50,'sxt0050','枸杞子','1','1',2.00,'g',1,'gqz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(51,'sxt0051','烫骨碎补','1','1',2.00,'g',1,'tgsb','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(52,'sxt0052','瓜蒌皮','1','1',2.00,'g',1,'gjp','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(53,'sxt0053','蜜瓜蒌子','1','1',2.00,'g',1,'mgjz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(54,'sxt0054','海风藤','1','1',2.00,'g',1,'hft','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(55,'sxt0055','海金沙','1','1',2.00,'g',1,'hjs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(56,'sxt0056','海螵蛸','1','1',2.00,'g',1,'hps','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(57,'sxt0057','海藻','1','1',2.00,'g',1,'hz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(58,'sxt0058','柯子肉','1','1',2.00,'g',1,'kzr','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(59,'sxt0059','合欢花','1','1',2.00,'g',1,'hhh','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(60,'sxt0060','南沙参','1','1',2.00,'g',1,'nss','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(61,'sxt0061','酒女贞子','1','1',2.00,'g',1,'jnzz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(62,'sxt0062','藕节','1','1',2.00,'g',1,'oj','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(63,'sxt0063','藕节炭','1','1',2.00,'g',1,'ojt','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(64,'sxt0064','胖大海','1','1',2.00,'g',1,'pdh','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(65,'sxt0065','炮姜','1','1',2.00,'g',1,'pj','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(66,'sxt0066','佩兰','1','1',2.00,'g',1,'pl','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(67,'sxt0067','炙枇杷叶','1','1',2.00,'g',1,'zbby','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(68,'sxt0068','蒲公英','1','1',2.00,'g',1,'pgy','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(69,'sxt0069','盐补骨脂','1','1',2.00,'g',1,'ybgz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(70,'sxt0070','白矾','1','1',2.00,'g',1,'bf','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(71,'sxt0071','炒半夏曲','1','1',2.00,'g',1,'cbxq','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(72,'sxt0072','炒芡实','1','1',2.00,'g',1,'cqs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(73,'sxt0073','麸炒山药','1','1',2.00,'g',1,'fcsy','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(74,'sxt0074','炒山楂','1','1',2.00,'g',1,'csc','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(75,'sxt0075','生神曲','1','1',2.00,'g',1,'ssq','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(76,'sxt0076','炒紫苏子','1','1',2.00,'g',1,'czsz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(77,'sxt0077','麸炒薏苡仁','1','1',2.00,'g',1,'fcyyr','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(78,'sxt0078','炒栀子','1','1',2.00,'g',1,'czz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(79,'sxt0079','麸炒枳壳','1','1',2.00,'g',1,'fczk','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(80,'sxt0080','车前草','1','1',2.00,'g',1,'cqc','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(81,'sxt0081','车前子','1','1',2.00,'g',1,'cqz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(82,'sxt0082','陈皮','1','1',2.00,'g',1,'cp','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(83,'sxt0083','陈皮炭','1','1',2.00,'g',1,'cpt','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(84,'sxt0084','赤芍','1','1',2.00,'g',1,'cs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(85,'sxt0085','赤小豆','1','1',2.00,'g',1,'cxd','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(86,'sxt0086','炒稻芽','1','1',2.00,'g',1,'cdy','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(87,'sxt0087','炒谷芽','1','1',2.00,'g',1,'cgy','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(88,'sxt0088','炒槐花','1','1',2.00,'g',1,'chh','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(89,'sxt0089','炒芥子','1','1',2.00,'g',1,'cjz','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(90,'sxt0090','炒苦杏仁','1','1',2.00,'g',1,'ckxr','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(91,'sxt0091','炒麦芽','1','1',2.00,'g',1,'cmy','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(92,'sxt0092','蚕砂','1','1',2.00,'g',1,'cs','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(93,'sxt0093','炒苍耳子','1','1',2.00,'g',1,'ccez','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(94,'sxt0094','草豆蔻','1','1',2.00,'g',1,'cdk','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(95,'sxt0095','炒草果仁','1','1',2.00,'g',1,'ccgr','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','1'),
+(96,'sxt0096','侧柏炭','1','1',2.00,'g',1,'cbt','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','1'),
+(97,'sxt0097','柴胡','1','1',2.00,'g',1,'ch','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','1'),
+(98,'sxt0098','蝉蜕','1','1',2.00,'g',1,'ct','1','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','1'),
+(99,'sxt0099','川贝母','1','1',2.00,'g',1,'cbm','1','0',80,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0'),
+(530,'221','221','3','2',2.00,'221',221,'221','2','0',100,100,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','超级管理员','1'),
+(532,'10055','费尔康','2','2',1800.00,'',1,'呼吸道类','10011','0',50,50,'2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','扁鹊',NULL),
+(542,'10010','费尔康','5','1',1800.00,'',1,'呼吸道类','10015','0',2,50,'2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL);
+
+/*Table structure for table `stock_producer` */
+
+DROP TABLE IF EXISTS `stock_producer`;
+
+CREATE TABLE `stock_producer` (
+  `producer_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '厂家ID',
+  `producer_name` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '厂家名称',
+  `producer_code` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '厂家简码 搜索用',
+  `producer_address` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '厂家地址 ',
+  `producer_tel` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '厂家电话',
+  `producer_person` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系人',
+  `keywords` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '关键字',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '状态标志（0正常 1停用）sys_normal_disable',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`producer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='生产厂家表';
+
+/*Data for the table `stock_producer` */
+
+insert  into `stock_producer`(`producer_id`,`producer_name`,`producer_code`,`producer_address`,`producer_tel`,`producer_person`,`keywords`,`status`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+(1,'云南白药集团股份有限公司','000538','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(2,'上海医药（集团）有限公司','1812538','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(3,'中国医药集团总公司','1238571','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(4,'广州医药集团有限公司 ','1031377','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(5,'哈药集团有限公司','727719','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(6,'华北制药集团有限责任公司','700869','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(7,'太极集团有限公司','589700','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(8,'北京同仁堂集团有限责任公司','224882','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(9,'湖南九芝堂股份有限公司','101857','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(10,'新疆新特药民族药业有限责任公司','85191','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(11,'江苏江山制药有限公司','72669','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(12,'武汉新琪安药业有限责任公司','71581','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(13,'武汉中联药业集团股份有限公司','58164','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(14,'江苏正大天晴药业股份有限公司','47643','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(15,'贵州三力制药股份有限公司','603439','云南省昆明市呈贡区云南白药街3686号','0871—66350538','孙二娘','ynby','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','');
+
+/*Table structure for table `stock_provider` */
+
+DROP TABLE IF EXISTS `stock_provider`;
+
+CREATE TABLE `stock_provider` (
+  `provider_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '供应商id',
+  `provider_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '供应商名称',
+  `contact_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系人名称',
+  `contact_mobile` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系人手机',
+  `contact_tel` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系人电话',
+  `bank_account` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '银行账号',
+  `provider_address` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '供应商地址',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）sys_normal_disable',
+  `del_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0正常 1删除）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`provider_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='供应商信息表';
+
+/*Data for the table `stock_provider` */
+
+insert  into `stock_provider`(`provider_id`,`provider_name`,`contact_name`,`contact_mobile`,`contact_tel`,`bank_account`,`provider_address`,`status`,`del_flag`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+(101,'云南英广贸易有限公司','雷华','15902738715','027-8989765','6379865245129741669','云南','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(102,'武汉英广贸易有限公司','雷华','15902738715','027-8989765','6379865245129741669','武汉','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(103,'北京英广贸易有限公司','雷华','15902738715','027-8989765','6379865245129741669','北京','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin');
+
+/*Table structure for table `stock_purchase` */
+
+DROP TABLE IF EXISTS `stock_purchase`;
+
+CREATE TABLE `stock_purchase` (
+  `purchase_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '制单号ID 全局ID雪花算法',
+  `provider_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '供应商ID',
+  `purchase_trade_total_amount` decimal(10,2) DEFAULT NULL COMMENT '采购批发总额',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '单据状态； 1未提交2待审核 3审核通过 4审核失败 5作废 6入库成功 字典表 his_order_status',
+  `apply_user_id` bigint(20) DEFAULT NULL COMMENT '申请人ID',
+  `apply_user_name` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '申请人名称',
+  `storage_opt_user` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '入库操作人',
+  `storage_opt_time` datetime DEFAULT NULL COMMENT '入库操作时间',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `examine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '审核信息',
+  `audit_msg` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '审核信息',
+  PRIMARY KEY (`purchase_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+/*Data for the table `stock_purchase` */
+
+insert  into `stock_purchase`(`purchase_id`,`provider_id`,`purchase_trade_total_amount`,`status`,`apply_user_id`,`apply_user_name`,`storage_opt_user`,`storage_opt_time`,`create_time`,`update_time`,`create_by`,`update_by`,`examine`,`audit_msg`) values 
+('CG1264752330314743808','102',80.00,'6',2,'扁鹊','扁鹊','2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,NULL),
+('CG1271356147747651584','102',200.00,'6',2,'扁鹊','扁鹊','2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','','1111',NULL),
+('CG1271358119477379072','101',2000.00,'6',2,'扁鹊','扁鹊','2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','','222',NULL),
+('CG1272373964395642880','101',600.00,'6',2,'扁鹊','扁鹊','2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,NULL),
+('CG1463066821916753920','101',100.00,'5',2,'扁鹊','扁鹊',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,NULL),
+('CG1463066821916753922','101',100.00,'6',2,'扁鹊','扁鹊','2030-01-01 00:00:00','2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,NULL),
+('CG1463066821916753923','101',100.00,'4',NULL,'扁鹊','扁鹊',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,'价格不对'),
+('CG1463066821916753924','101',100.00,'2',2,'扁鹊',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,'价格不对'),
+('CG1463066821916753926','101',100.00,'3',2,'扁鹊','扁鹊',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,NULL),
+('CG1463325706493755392','102',151000.00,'5',2,'扁鹊','扁鹊',NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','扁鹊','',NULL,NULL);
+
+/*Table structure for table `stock_purchase_item` */
+
+DROP TABLE IF EXISTS `stock_purchase_item`;
+
+CREATE TABLE `stock_purchase_item` (
+  `item_id` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '详情ID',
+  `purchase_id` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '采购单据ID',
+  `medicines_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '药品ID',
+  `purchase_number` int(10) DEFAULT NULL COMMENT '采购数量',
+  `trade_price` decimal(10,2) DEFAULT NULL COMMENT '批发价',
+  `trade_total_amount` decimal(10,2) DEFAULT NULL COMMENT '批发额',
+  `batch_number` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '药品生产批次号',
+  `remark` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `medicines_name` varchar(120) CHARACTER SET utf8 DEFAULT '' COMMENT '药品名称',
+  `medicines_type` char(1) CHARACTER SET utf8 DEFAULT '' COMMENT '药品分类 sys_dict_data表his_medicines_type',
+  `prescription_type` char(1) CHARACTER SET utf8 DEFAULT '' COMMENT '处方类型 sys_dict_data表his_prescription_type',
+  `producter_id` varchar(50) CHARACTER SET utf8 DEFAULT '' COMMENT '生产厂家ID',
+  `conversion` int(10) DEFAULT '1' COMMENT '换算量',
+  `unit` varchar(50) CHARACTER SET utf8 DEFAULT '' COMMENT '单位（g/条）',
+  `keywords` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '关键字',
+  PRIMARY KEY (`item_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+/*Data for the table `stock_purchase_item` */
+
+insert  into `stock_purchase_item`(`item_id`,`purchase_id`,`medicines_id`,`purchase_number`,`trade_price`,`trade_total_amount`,`batch_number`,`remark`,`medicines_name`,`medicines_type`,`prescription_type`,`producter_id`,`conversion`,`unit`,`keywords`) values 
+('1264762105261850624','CG1264752330314743808','1',20,2.00,40.00,'1','1','阿胶珠','1','1','1',1,'g','ajz'),
+('1264762105278627840','CG1264752330314743808','2',20,2.00,40.00,'2','2','醋艾炭','1','1','2',1,'g','cat'),
+('1271356423200178176','CG1271356147747651584','2',10,20.00,200.00,'21','21','醋艾炭','1','1','2',1,'g','cat'),
+('1271358744239931392','CG1271358119477379072','1',100,10.00,1000.00,'1','1','阿胶珠','1','1','1',1,'g','ajz'),
+('1271358744252514304','CG1271358119477379072','2',100,10.00,1000.00,'2','2','醋艾炭','1','1','2',1,'g','cat'),
+('1272374036281819136','CG1272373964395642880','8',10,20.00,200.00,'1','1','白英','1','1','1',1,'g','by'),
+('1272374036294402048','CG1272373964395642880','10',10,20.00,200.00,'1','1','炒牵牛子','1','1','1',1,'g','cqnz'),
+('1272374036306984960','CG1272373964395642880','9',10,20.00,200.00,'1','1','白芷','1','1','1',1,'g','bz'),
+('1463073606807453696','CG1463066821916753920','1',NULL,NULL,NULL,'','','阿胶珠','1','1','',1,'g',''),
+('1463325869576683520','CG1463325706493755392','4',1000,100.00,100000.00,'','','白蔹','1','1','1',1,'g','bl'),
+('1463325869878673408','CG1463325706493755392','5',2000,25.50,51000.00,'','','白果','1','1','1',1,'g','bg'),
+('1463326806642917376','CG1463326692629151744','3',100,5.00,500.00,'','','制巴戟天','1','1','1',1,'g','zbjt'),
+('1483441478037536768','CG1463066821916753923','1',NULL,NULL,NULL,'','','阿胶珠2','1','1','',1,'g',''),
+('1487003686235406336','CG1463066821916753922','1',1,1.00,1.00,'','','阿胶珠','1','1','',1,'g',''),
+('1487004104210382848','CG1463066821916753926','1',NULL,NULL,NULL,'','','阿胶珠','1','1','',1,'g',''),
+('1489810312222867456','CG1463066821916753924','1',NULL,NULL,NULL,'','','阿胶珠2','1','1','',1,'g','');
+
+/*Table structure for table `sys_check_item` */
+
+DROP TABLE IF EXISTS `sys_check_item`;
+
+CREATE TABLE `sys_check_item` (
+  `check_item_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '项目费用ID',
+  `check_item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '项目名称',
+  `keywords` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '关键字【查询用】',
+  `unit_price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '项目单价',
+  `cost` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '项目成本',
+  `unit` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '单位',
+  `type_id` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '项目类别IDsxt_sys_dict_type',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '状态0正常1停用 sxt_sys_dict_type',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`check_item_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='检查费用表';
+
+/*Data for the table `sys_check_item` */
+
+insert  into `sys_check_item`(`check_item_id`,`check_item_name`,`keywords`,`unit_price`,`cost`,`unit`,`type_id`,`status`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+(1,'乙肝五项','ygwx',30.00,10.00,'次','2','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','超级管理员'),
+(2,'血常规','xcg',5.00,1.00,'次','2','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(3,'CT','ct',50.00,10.00,'次','1','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员',''),
+(4,'X光','xg',20.00,5.00,'次','1','0','2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','');
+
+/*Table structure for table `sys_dept` */
+
+DROP TABLE IF EXISTS `sys_dept`;
+
+CREATE TABLE `sys_dept` (
+  `dept_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '部门科室id',
+  `dept_name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '部门名称',
+  `reg_number` int(11) DEFAULT '0' COMMENT '挂号编号',
+  `dept_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '科室编号',
+  `order_num` int(4) DEFAULT '0' COMMENT '显示顺序',
+  `dept_leader` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '负责人',
+  `leader_phone` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '联系电话',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
+  `del_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0正常 1删除）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`dept_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='部门/科室表';
+
+/*Data for the table `sys_dept` */
+
+insert  into `sys_dept`(`dept_id`,`dept_name`,`reg_number`,`dept_number`,`order_num`,`dept_leader`,`leader_phone`,`status`,`del_flag`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+(101,'内科',52,'HIS-NK',1,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2022-02-22 09:47:34','admin','admin'),
+(102,'外科',1,'HIS-WK',2,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(103,'儿科',0,'HIS-EK',3,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(104,'妇科',0,'HIS-FK',4,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(106,'耳鼻侯科',0,'HIS-EBHK',6,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(107,'口腔科',0,'HIS-KQK',7,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(108,'皮肤科',0,'HIS-PFK',8,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(109,'其它',0,'HIS-OTHER',9,'雷哥','15902738715','0','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin');
+
+/*Table structure for table `sys_dict_data` */
+
+DROP TABLE IF EXISTS `sys_dict_data`;
+
+CREATE TABLE `sys_dict_data` (
+  `dict_code` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典编码',
+  `dict_sort` int(4) DEFAULT '0' COMMENT '字典排序',
+  `dict_label` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典标签',
+  `dict_value` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典键值',
+  `dict_type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`dict_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='字典数据表';
+
+/*Data for the table `sys_dict_data` */
+
+insert  into `sys_dict_data`(`dict_code`,`dict_sort`,`dict_label`,`dict_value`,`dict_type`,`status`,`remark`,`create_by`,`create_time`,`update_by`,`update_time`) values 
+(1,1,'男','0','sys_user_sex','0','性别男','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(2,2,'女','1','sys_user_sex','0','性别女','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(3,3,'未知','2','sys_user_sex','0','性别未知','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(4,1,'正常','0','sys_normal_disable','0','正常状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(5,2,'停用','1','sys_normal_disable','0','停用状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(6,1,'是','Y','sys_yes_no','0','系统默认是','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(7,2,'否','N','sys_yes_no','0','系统默认否','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(8,1,'成功','0','sys_common_status','0','成功状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(9,2,'失败','1','sys_common_status','0','失败状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(10,1,'专科','1','sys_user_background','0','用户背景','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(11,2,'本科','2','sys_user_background','0','用户背景','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(12,3,'研究生','3','sys_user_background','0','用户背景','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(13,4,'博士','4','sys_user_background','0','用户背景','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(14,5,'博士后','5','sys_user_background','0','用户背景','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(15,6,'研究员','6','sys_user_background','0','用户背景','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(16,1,'主任医师','1','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(17,2,'副主任医师','2','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(18,3,'医师','3','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(19,4,'助理医师','4','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(20,5,'实习医师','5','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(21,6,'主管护士','6','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(22,7,'护士','7','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(23,8,'其它','8','sys_user_level','0','用户级别','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(29,1,'未提交','1','his_order_status','0','入库单状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(30,2,'待审核','2','his_order_status','0','入库单状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(31,3,'审核通过','3','his_order_status','0','入库单状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(32,4,'审核失败','4','his_order_status','0','入库单状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(33,5,'作废','5','his_order_status','0','入库单状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(34,6,'入库成功','6','his_order_status','0','入库成功','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(36,1,'通知','0','sys_notice_type','0','通知状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(37,2,'公告','1','sys_notice_type','0','公告状态','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00'),
+(38,1,'系统用户','0','sys_user_type','0','系统用户','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(39,0,'患者用户','1','sys_user_type','0','患者用户','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(40,1,'新增','1','sys_oper_type','0','新增','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(41,2,'修改','2','sys_oper_type','0','修改','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(42,3,'删除','3','sys_oper_type','0','删除','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(43,4,'授权','4','sys_oper_type','0','授权','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(44,5,'导出','5','sys_oper_type','0','导出','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(45,6,'导入','6','sys_oper_type','0','导入','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(46,0,'退出','7','sys_oper_type','0','退出','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(47,8,'清空数据','8','sys_oper_type','0','清空数据','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(48,1,'拍片类','1','his_inspection_type','0','拍片类','超级管理员','2030-01-01 00:00:00','超级管理员','2030-01-01 00:00:00'),
+(49,2,'化验类','2','his_inspection_type','0','化验类','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(50,1,'中药处方','1','his_prescription_type','0','中药处方','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(51,2,'西药处方','2','his_prescription_type','0','西药处方','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(52,1,'中草药','1','his_medicines_type','0','中草药','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(53,2,'儿科用药','2','his_medicines_type','0','儿科用药','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(54,3,'耳鼻喉科用药','3','his_medicines_type','0','耳鼻喉科用药','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(55,4,'抗生素类抗感染药物','4','his_medicines_type','0','抗生素类抗感染药物','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(56,5,'妇科用药','5','his_medicines_type','0','妇科用药','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(57,6,'骨伤科用药','6','his_medicines_type','0','骨伤科用药','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(58,7,'呼吸系统用药物','7','his_medicines_type','0','呼吸系统用药物','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(59,8,'激素类药','8','his_medicines_type','0','激素类药','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(60,9,'解热镇痛药物','9','his_medicines_type','0','解热镇痛药物','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(61,10,'抗肿瘤药物','10','his_medicines_type','0','抗肿瘤药物','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(63,1,'门诊','1','his_scheduling_type','0','门诊','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(64,2,'急诊','2','his_scheduling_type','0','急诊','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(65,1,'上午','1','his_subsection_type','0','上午','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(66,2,'下午','2','his_subsection_type','0','下午','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(67,3,'晚上','3','his_subsection_type','0','晚上','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(68,1,'未完善','0','his_patient_msg_final','0','未完善','超级管理员','2030-01-01 00:00:00','超级管理员','2030-01-01 00:00:00'),
+(69,2,'已完善','1','his_patient_msg_final','0','已完善','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(70,1,'未收费','0','his_registration_status','0','未收费','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(71,2,'待就诊','1','his_registration_status','0','待就诊','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(72,3,'就诊中','2','his_registration_status','0','就诊中','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(73,4,'就诊完成','3','his_registration_status','0','就诊完成','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(74,5,'已退号','4','his_registration_status','0','已退号','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(75,6,'作废','5','his_registration_status','0','作废','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(76,1,'初诊','0','his_receive_type','0','初诊','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(77,2,'复诊','1','his_receive_type','0','复诊','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(78,1,'否','0','his_contagious_status','0','否','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(79,2,'是','1','his_contagious_status','0','是','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(80,1,'未支付','0','his_order_details_status','0','未支付','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(81,2,'已支付','1','his_order_details_status','0','已支付','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(82,3,'已退费','2','his_order_details_status','0','已退费','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(83,4,'已完成','3','his_order_details_status','0','已完成=已检查和已发药','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(84,1,'检测中','0','his_check_result_status','0','检测中','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(85,2,'检测完成','1','his_check_result_status','0','检测完成','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(86,1,'未支付','0','his_order_charge_status','0','未支付','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(87,2,'支付成功','1','his_order_charge_status','0','支付成功','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(88,3,'支付超时','2','his_order_charge_status','0','支付超时','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(89,4,'支付失败','3','his_order_charge_status','0','支付失败','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(90,1,'未退费','0','his_backfee_status','0','未退费','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(91,2,'已退费','1','his_backfee_status','0','已退费','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(92,3,'退费失败','2','his_backfee_status','0','退费失败','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(93,1,'现金','0','his_pay_type_status','0','现金','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00'),
+(94,2,'支付宝','1','his_pay_type_status','0','支付宝','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00');
+
+/*Table structure for table `sys_dict_type` */
+
+DROP TABLE IF EXISTS `sys_dict_type`;
+
+CREATE TABLE `sys_dict_type` (
+  `dict_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '字典主键',
+  `dict_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典名称',
+  `dict_type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '字典类型',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`dict_id`) USING BTREE,
+  UNIQUE KEY `dict_type` (`dict_type`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='字典类型表';
+
+/*Data for the table `sys_dict_type` */
+
+insert  into `sys_dict_type`(`dict_id`,`dict_name`,`dict_type`,`status`,`create_by`,`create_time`,`update_by`,`update_time`,`remark`) values 
+(1,'用户性别','sys_user_sex','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','用户性别列表'),
+(2,'系统开关','sys_normal_disable','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','系统状态列表'),
+(3,'系统是否','sys_yes_no','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','系统是否列表'),
+(4,'系统状态','sys_common_status','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','系统是否列表'),
+(5,'学历','sys_user_background','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','学历列表'),
+(6,'医生级别','sys_user_level','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','医生级别列表'),
+(7,'入库单状态','his_order_status','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','入库单状态列表'),
+(8,'通知类型','sys_notice_type','0','admin','2030-01-01 00:00:00','admin','2030-01-01 00:00:00','通知类型'),
+(9,'用户类型','sys_user_type','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','用户类型'),
+(10,'操作类型','sys_oper_type','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','操作日志类型'),
+(11,'检查项目类型','his_inspection_type','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','检查项目类型'),
+(18,'处方类型','his_prescription_type','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','处方类型'),
+(19,'药品分类','his_medicines_type','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','药品分类'),
+(21,'排班类型','his_scheduling_type','0','超级管理员','2030-01-01 00:00:00','超级管理员','2030-01-01 00:00:00','排班类型'),
+(22,'排班时段','his_subsection_type','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','排班时段'),
+(23,'患者信息完善状态','his_patient_msg_final','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','患者信息完善状态'),
+(24,'挂号单类型','his_registration_status','0','超级管理员','2030-01-01 00:00:00','','2030-01-01 00:00:00','挂号单类型'),
+(25,'接诊类型','his_receive_type','0','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00','接诊类型'),
+(26,'是否传染','his_contagious_status','0','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00','是否传染'),
+(27,'订单和处方详情状态','his_order_details_status','0','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00','处方详情支付状态'),
+(28,'检查状态','his_check_result_status','0','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00','检查状态'),
+(29,'订单状态','his_order_charge_status','0','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00','订单状态'),
+(30,'退费状态','his_backfee_status','0','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00','退费表退费状态'),
+(31,'收费退费类型','his_pay_type_status','0','扁鹊','2030-01-01 00:00:00','','2030-01-01 00:00:00','收费退费类型');
+
+/*Table structure for table `sys_login_info` */
+
+DROP TABLE IF EXISTS `sys_login_info`;
+
+CREATE TABLE `sys_login_info` (
+  `info_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '访问ID',
+  `user_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '用户名称',
+  `login_account` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登陆账号',
+  `ip_addr` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '登录IP地址',
+  `login_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '登录地点',
+  `browser` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '浏览器类型',
+  `os` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '操作系统',
+  `login_status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '登录状态（0成功 1失败）字典表',
+  `login_type` char(1) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登陆类型0系统用户1患者用户 字典表',
+  `msg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '提示消息',
+  `login_time` datetime DEFAULT NULL COMMENT '访问时间',
+  PRIMARY KEY (`info_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='系统访问记录';
+
+/*Data for the table `sys_login_info` */
+
+insert  into `sys_login_info`(`info_id`,`user_name`,`login_account`,`ip_addr`,`login_location`,`browser`,`os`,`login_status`,`login_type`,`msg`,`login_time`) values 
+(1,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-24 16:50:34'),
+(2,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-24 16:51:05'),
+(3,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-24 17:32:36'),
+(4,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-24 20:46:40'),
+(5,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-01-25 14:39:11'),
+(6,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-25 15:22:09'),
+(7,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-25 16:51:36'),
+(8,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-25 18:05:40'),
+(9,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-26 14:55:19'),
+(10,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-26 16:29:37'),
+(11,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-26 17:18:00'),
+(12,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-01-26 17:39:24'),
+(13,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-27 14:27:23'),
+(14,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-01-27 14:31:12'),
+(15,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-01-27 15:08:41'),
+(16,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-27 15:09:25'),
+(17,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-27 16:06:00'),
+(18,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-27 17:30:14'),
+(19,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-28 10:31:20'),
+(20,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-28 11:16:55'),
+(21,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-28 14:37:09'),
+(22,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-01-28 16:56:03'),
+(23,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-28 17:25:44'),
+(24,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-01-28 18:04:11'),
+(25,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-05 11:26:06'),
+(26,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-05 11:57:08'),
+(27,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-05 16:45:27'),
+(28,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-05 18:05:00'),
+(29,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-05 18:09:01'),
+(30,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-05 21:00:12'),
+(31,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-05 21:00:57'),
+(32,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-06 10:57:52'),
+(33,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-06 11:24:04'),
+(34,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-07 09:54:25'),
+(35,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-07 14:28:26'),
+(36,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-07 14:36:13'),
+(37,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-07 15:05:58'),
+(38,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-07 19:58:28'),
+(39,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-08 09:39:39'),
+(40,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-08 14:04:37'),
+(41,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-08 14:11:31'),
+(42,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-08 14:52:27'),
+(43,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-08 15:29:59'),
+(44,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-08 16:45:28'),
+(45,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-08 16:55:38'),
+(46,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-08 17:48:41'),
+(47,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-09 10:03:24'),
+(48,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-09 11:34:51'),
+(49,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-09 14:23:39'),
+(50,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-09 14:24:36'),
+(51,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-09 15:19:08'),
+(52,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-09 16:40:58'),
+(53,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-09 16:43:43'),
+(54,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-09 17:38:01'),
+(55,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-09 17:43:18'),
+(56,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-10 10:00:12'),
+(57,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-10 11:44:24'),
+(58,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-10 13:49:19'),
+(59,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-10 13:59:55'),
+(60,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-10 14:38:35'),
+(61,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-10 15:20:49'),
+(62,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-10 16:18:01'),
+(63,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-10 16:26:10'),
+(64,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-11 09:51:34'),
+(65,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-11 11:18:16'),
+(66,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-11 11:52:10'),
+(67,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-11 14:10:10'),
+(68,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-11 16:06:43'),
+(69,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-12 11:28:07'),
+(70,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-12 13:03:14'),
+(71,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-12 16:43:43'),
+(72,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-14 10:47:21'),
+(73,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 09:29:25'),
+(74,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 11:13:47'),
+(75,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-16 11:30:05'),
+(76,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 12:03:27'),
+(77,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 13:41:51'),
+(78,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 16:08:50'),
+(79,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 17:17:56'),
+(80,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 18:52:51'),
+(81,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-16 19:50:34'),
+(82,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-17 09:49:50'),
+(83,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-17 10:46:25'),
+(84,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-17 12:24:50'),
+(85,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-17 14:34:39'),
+(86,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-17 15:21:57'),
+(87,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-17 16:44:07'),
+(88,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-18 09:36:24'),
+(89,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-18 09:55:20'),
+(90,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-18 11:14:49'),
+(91,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-18 14:32:38'),
+(92,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-18 17:30:37'),
+(93,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-18 20:13:51'),
+(94,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 11:03:22'),
+(95,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 13:30:23'),
+(96,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:45:32'),
+(97,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:45:50'),
+(98,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:46:12'),
+(99,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:46:26'),
+(100,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:47:54'),
+(101,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:48:16'),
+(102,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:48:47'),
+(103,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:51:27'),
+(104,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:51:35'),
+(105,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-19 22:51:41'),
+(106,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-21 09:39:11'),
+(107,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-21 09:39:17'),
+(108,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-21 09:39:50'),
+(109,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-21 09:41:44'),
+(110,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-21 09:41:56'),
+(111,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-21 09:51:43'),
+(112,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-21 12:16:39'),
+(113,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-21 13:40:25'),
+(114,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-21 13:44:32'),
+(115,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-21 14:22:50'),
+(116,'扁鹊','13888001001','127.0.0.1','内网IP','Unknown','Unknown','0','0','登录成功','2022-02-21 15:10:43'),
+(117,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登录成功','2022-02-22 09:35:24'),
+(118,'扁鹊','13888001001','127.0.0.1','内网IP','Chrome 9','Windows 10','0','0','登陆成功','2022-02-22 10:06:54');
+
+/*Table structure for table `sys_menu` */
+
+DROP TABLE IF EXISTS `sys_menu`;
+
+CREATE TABLE `sys_menu` (
+  `menu_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '菜单ID',
+  `parent_id` bigint(20) DEFAULT '0' COMMENT '父菜单ID',
+  `parent_ids` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '父节点ID集合',
+  `menu_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '菜单名称',
+  `menu_type` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '菜单类型（M目录 C菜单 F按钮）',
+  `percode` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '权限标识',
+  `path` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '路由地址',
+  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+  `status` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '菜单状态（0正常 1停用）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  PRIMARY KEY (`menu_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='菜单权限表';
+
+/*Data for the table `sys_menu` */
+
+insert  into `sys_menu`(`menu_id`,`parent_id`,`parent_ids`,`menu_name`,`menu_type`,`percode`,`path`,`remark`,`status`,`create_time`,`update_time`,`create_by`,`update_by`) values 
+(1,0,NULL,'系统管理','M',NULL,'/system','系统管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(2,0,NULL,'数据统计','M',NULL,'/statistics','数据统计','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(3,0,NULL,'药品进销存','M',NULL,'/stock','药品进销存','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(4,0,NULL,'收费管理','M',NULL,'/charge','收费管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(5,0,NULL,'检查管理','M',NULL,'/check','检查管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(6,0,NULL,'看病就诊','M',NULL,'/doctor','看病就诊','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(7,1,'1','科室管理','C',NULL,'/system/dept','科室管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(8,1,'1','用户管理','C',NULL,'/system/user','用户管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(9,1,'1','角色管理','C',NULL,'/system/role','角色管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(10,1,'1','菜单管理','C',NULL,'/system/menu','菜单管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(11,1,'1','字典管理','C',NULL,'/system/dict','字典管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(12,1,'1','通知公告','C',NULL,'/system/notice','通知公告','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(13,1,'1','登陆日志管理','C',NULL,'/system/log_login','登陆日志管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(14,1,'1','操作日志管理','C',NULL,'/system/log_opt','操作日志管理','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(15,1,'1','检查费用设置','C',NULL,'/system/ins_fee','检查费用设置','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(16,1,'1','挂号费用设置','C',NULL,'/system/reg_fee','挂号费用设置','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(17,2,'2','收支统计','C',NULL,'/statistics/revenue','收支统计','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(18,2,'2','药品销售统计','C',NULL,'/statistics/sales','药品销售统计','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(19,2,'2','检查项目统计','C',NULL,'/statistics/check','检查项目统计','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(20,2,'2','年月报表统计','C',NULL,'/statistics/yearmonth','年月报表统计','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(21,2,'2','工作量统计','C',NULL,'/statistics/workload','工作量统计','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(22,3,'3','厂家信息维护','C',NULL,'/stock/producter','厂家信息维护','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(23,3,'3','药品信息维护','C',NULL,'/stock/medicinal','药品信息维护','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(24,3,'3','供应商维护','C',NULL,'/stock/provider','供应商维护','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(25,3,'3','采购入库','C',NULL,'/stock/purchase','采购入库','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(26,3,'3','入库审核','C',NULL,'/stock/examine','入库审核','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(27,3,'3','库存查询','C',NULL,'/stock/inventory','库存查询','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(28,4,'4','处方收费','C',NULL,'/charge/docharge','处方收费','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(29,4,'4','收费列表','C',NULL,'/charge/chargelist','收费列表','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(30,4,'4','处方退费','C',NULL,'/charge/backfee','处方退费','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(31,4,'4','退费查询','C',NULL,'/charge/backfeelist','退费查询','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(32,4,'4','处方发药','C',NULL,'/charge/dispensing','处方发药','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(33,5,'6','新开检查','C',NULL,'/check/docheck','新开检查','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(34,5,'6','检查结果录入','C',NULL,'/check/checkresult','检查结果录入','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(35,5,'6','检查结果查询','C',NULL,'/check/checklist','检查结果查询','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(36,6,'6','门诊挂号','C',NULL,'/doctor/registered','门诊挂号','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(37,6,'6','挂号列表','C',NULL,'/doctor/registeredlist','挂号列表','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(38,6,'6','新开就诊','C',NULL,'/doctor/newcare','就开就诊','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(39,6,'6','就诊列表','C',NULL,'/doctor/carelist','就诊列表','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(40,6,'6','我的排班','C',NULL,'/doctor/myscheduling','我的排班','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(41,6,'6','医生排班','C',NULL,'/doctor/scheduling','医生排班','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin'),
+(42,6,'6','患者库','C',NULL,'/doctor/patient','患者库','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin');
+
+/*Table structure for table `sys_notice` */
+
+DROP TABLE IF EXISTS `sys_notice`;
+
+CREATE TABLE `sys_notice` (
+  `notice_id` int(4) NOT NULL AUTO_INCREMENT COMMENT '公告ID',
+  `notice_title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '公告标题',
+  `notice_type` char(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '公告类型（1通知 2公告）',
+  `notice_content` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '公告内容',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '公告状态（0正常 1关闭）',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `remark` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`notice_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='通知公告表';
+
+/*Data for the table `sys_notice` */
+
+insert  into `sys_notice`(`notice_id`,`notice_title`,`notice_type`,`notice_content`,`status`,`create_by`,`create_time`,`update_by`,`update_time`,`remark`) values 
+(1,'温馨提醒：尚学堂HIS发布啦','0','新版本内容','0','admin','2030-01-01 00:00:00','ry','2030-01-01 00:00:00','管理员'),
+(2,'放假通知','1','定于2030年12月1日起放假','0','admin','2030-01-01 00:00:00','扁鹊','2030-01-01 00:00:00','管理员');
+
+/*Table structure for table `sys_oper_log` */
+
+DROP TABLE IF EXISTS `sys_oper_log`;
+
+CREATE TABLE `sys_oper_log` (
+  `oper_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '日志主键',
+  `title` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '模块标题',
+  `business_type` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '业务类型（0其它 1新增 2修改 3删除）',
+  `method` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '方法名称',
+  `request_method` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求方式',
+  `operator_type` int(1) DEFAULT '0' COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
+  `oper_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '操作人员',
+  `oper_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求URL',
+  `oper_ip` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '主机地址',
+  `oper_location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '操作地点',
+  `oper_param` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '请求参数',
+  `json_result` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '返回参数',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '操作状态（0正常 1异常）',
+  `error_msg` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '错误消息',
+  `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
+  PRIMARY KEY (`oper_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='操作日志记录';
+
+/*Data for the table `sys_oper_log` */
+
+insert  into `sys_oper_log`(`oper_id`,`title`,`business_type`,`method`,`request_method`,`operator_type`,`oper_name`,`oper_url`,`oper_ip`,`oper_location`,`oper_param`,`json_result`,`status`,`error_msg`,`oper_time`) values 
+(2,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"ea867072-9971-494b-bd7f-4db4b38fc8d5\"}','0','','2030-01-01 00:00:00'),
+(3,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"227516b4-c82e-4352-992a-3d297cd9ab27\"}','0','','2022-01-24 17:32:36'),
+(4,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"1eb08b2f-02cd-4816-901c-7b251013371f\"}','0','','2022-01-24 20:46:41'),
+(5,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"8e637d99-d7d8-4b9e-92c8-e4115b328688\"}','0','','2022-01-25 14:39:12'),
+(6,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"e5d9a3de-1055-4df5-ab5b-f0b91a420389\"}','0','','2022-01-25 15:22:10'),
+(7,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"9abed49e-37ae-4419-a0ca-e47953bcee6b\"}','0','','2022-01-25 16:51:36'),
+(8,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"55810689-3316-4e2b-8529-49d2e80c6830\"}','0','','2022-01-25 18:05:40'),
+(9,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"1413d16f-8796-4ce6-8f0f-2784e30a2ed9\"}','0','','2022-01-26 14:55:20'),
+(10,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"e44064ae-70bc-4c6a-a92b-e3a197acea3b\"}','0','','2022-01-26 16:29:37'),
+(11,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"3f4fa711-5fb8-4aa3-97ef-61c1d8cbe51a\"}','0','','2022-01-26 17:18:00'),
+(12,'用户登录','1','com.itbaizhan.openhis.controller.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"bae8eca8-02f1-44ad-bbe9-837c65afd577\"}','0','','2022-01-26 17:39:24'),
+(13,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"ffd9288b-fdd4-4475-a56f-2bcabb502027\"}','0','','2022-01-27 14:27:24'),
+(14,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"56bc447d-7006-4333-b7f7-808c7f85a4c1\"}','0','','2022-01-27 14:31:12'),
+(15,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"583c158f-46fb-418f-8a6b-589db3a30785\"}','0','','2022-01-27 15:08:42'),
+(16,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"73ff8615-a40d-47a9-b67d-a5d750232b7a\"}','0','','2022-01-27 15:09:25'),
+(17,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"799622d9-675c-44b0-a3de-9defe06875b2\"}','0','','2022-01-27 16:06:00'),
+(18,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"c58539a1-4235-4d81-b03d-2d06701ffb2a\"}','0','','2022-01-27 17:30:15'),
+(19,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"1209bf8b-48db-4168-967d-fad2b144edeb\"}','0','','2022-01-28 10:31:21'),
+(20,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"b2635092-7dba-46ed-9414-11899b0f894a\"}','0','','2022-01-28 11:16:55'),
+(21,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"c5ca499d-14a8-4189-8618-ccc31f278a0a\"}','0','','2022-01-28 14:37:09'),
+(22,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"dbf67141-704b-4a17-a94c-4f845d37fbed\"}','0','','2022-01-28 16:56:04'),
+(23,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"51505656-4bfe-40c6-afe1-809532202dc1\"}','0','','2022-01-28 17:25:45'),
+(24,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"84c0bb9f-8c15-40b7-8ed1-0848f325b214\"}','0','','2022-01-28 18:04:12'),
+(25,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"4a525e09-d9af-4e96-8a79-9bcb3eb61c4d\"}','0','','2022-02-05 11:26:07'),
+(26,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"538352d4-25b4-473f-850a-ea4cb338a208\"}','0','','2022-02-05 11:57:09'),
+(27,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"47eeb737-a499-4027-823d-22946ac04a94\"}','0','','2022-02-05 16:45:27'),
+(28,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"7bb26e6b-cf53-4098-9f48-ee509fe2f8f4\"}','0','','2022-02-05 18:05:01'),
+(29,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"02a590dc-971d-49bc-a082-aa6f905a54ca\"}','0','','2022-02-05 18:09:01'),
+(30,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"73c09538-2089-4451-94ba-96a078122f12\"}','0','','2022-02-05 21:00:12'),
+(31,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"a6579fc5-d2d7-46e0-82c5-0f3524c5d182\"}','0','','2022-02-05 21:00:57'),
+(32,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"fabc6d8f-cf97-456c-b373-c74f634c0efc\"}','0','','2022-02-06 10:57:53'),
+(33,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"dbb06714-5fe7-440c-9a7d-b8e5a500958c\"}','0','','2022-02-06 11:24:05'),
+(34,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"d59c55c3-e46e-4b5d-b22b-739c569c4f74\"}','0','','2022-02-07 09:54:26'),
+(35,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"288a4ac0-9dd5-491b-a280-5a026b51b727\"}','0','','2022-02-07 14:28:26'),
+(36,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"f146c6eb-1ed9-4c59-b30c-7dea5e0a7798\"}','0','','2022-02-07 14:36:13'),
+(37,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"2f31d260-6a0c-4f42-82fa-ebf64bdff7b1\"}','0','','2022-02-07 15:05:58'),
+(38,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"137a18c0-8f10-44c4-89fe-a8596182a286\"}','0','','2022-02-07 19:58:29'),
+(39,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"39919e36-7aa5-4380-9441-fbdd18724623\"}','0','','2022-02-08 09:39:39'),
+(40,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"297c1617-4025-4abf-b6f6-e9486a63490e\"}','0','','2022-02-08 14:04:37'),
+(41,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"49f1b0ca-ccc2-4649-9448-25608ed4e848\"}','0','','2022-02-08 14:11:32'),
+(42,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"580de269-c8f4-4729-abb3-7b80d173bf34\"}','0','','2022-02-08 14:52:27'),
+(43,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"7c73da3c-38ea-4454-88b8-e1d66146b287\"}','0','','2022-02-08 15:30:00'),
+(44,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"71d3fabc-1b3b-4ffe-9421-271ae3794efe\"}','0','','2022-02-08 16:45:28'),
+(45,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"79e19881-41ae-4a7c-afd0-5999259e8835\"}','0','','2022-02-08 16:55:39'),
+(46,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"db2c433a-1396-4cf1-a66d-19e11f552f9b\"}','0','','2022-02-08 17:48:41'),
+(47,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"a005b5be-b242-47ee-9bec-abe03e446381\"}','0','','2022-02-09 10:03:25'),
+(48,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"7ae48ec0-fc16-4261-9c9d-1ebbe4ed09f8\"}','0','','2022-02-09 11:34:52'),
+(49,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"c145b753-7077-403e-83fb-396a95158b4a\"}','0','','2022-02-09 14:23:40'),
+(50,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"4eaa5e24-7eb3-4240-83f7-d260bd5dc15a\"}','0','','2022-02-09 14:24:36'),
+(51,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"075f9fad-b36b-4340-ad3b-5ea9ae7b7bb7\"}','0','','2022-02-09 15:19:08'),
+(52,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"4be48e9a-7eba-4020-a338-435db0d61c63\"}','0','','2022-02-09 16:40:59'),
+(53,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"8839233a-092f-4e9f-b334-2ce2a4b635ef\"}','0','','2022-02-09 16:43:43'),
+(54,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"d524b792-ee61-459b-9503-855324f49a0f\"}','0','','2022-02-09 17:38:02'),
+(55,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"942e2635-300f-4e9e-bf5c-225995e54903\"}','0','','2022-02-09 17:43:18'),
+(56,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"aa74cf86-5abe-455f-a0b8-48ea02326540\"}','0','','2022-02-10 10:00:13'),
+(57,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"8ac77ce3-af72-4d25-aa00-7601bac19e81\"}','0','','2022-02-10 11:44:24'),
+(58,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"3cc90541-3a33-4b11-8bc9-51787ea582ff\"}','0','','2022-02-10 13:49:20'),
+(59,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"15e995f6-905f-432b-8930-c20db6a434d5\"}','0','','2022-02-10 13:59:55'),
+(60,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"1ebe9449-888d-4cda-a5bd-9484e7d98677\"}','0','','2022-02-10 14:38:36'),
+(61,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"bf861309-d46f-4b20-8c05-8f2b2e8963a5\"}','0','','2022-02-10 15:20:49'),
+(62,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"e62ebc1b-b2df-4729-9dca-4d4472abe586\"}','0','','2022-02-10 16:18:01'),
+(63,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"163b78d7-6203-4fa3-8a1d-8a2494ad1ef1\"}','0','','2022-02-10 16:26:10'),
+(64,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"127013cb-7e39-4db7-a9a7-3a033954b010\"}','0','','2022-02-11 09:51:35'),
+(65,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"e574b6db-2a31-4404-92e8-66e7f3971c5a\"}','0','','2022-02-11 11:18:16'),
+(66,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"718a850a-ede1-4676-a4ed-0c574bc198b5\"}','0','','2022-02-11 11:52:10'),
+(67,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"69f4901b-01a8-4c60-9ce3-3b974acd48ac\"}','0','','2022-02-11 14:10:10'),
+(68,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"94573dd1-2c2e-49a9-a3db-8098891ccc16\"}','0','','2022-02-11 16:06:43'),
+(69,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"853782b8-be70-43e1-a4cb-ce9647a451b2\"}','0','','2022-02-12 11:28:07'),
+(70,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"11199418-b6d1-4d46-8295-ad2ec9835430\"}','0','','2022-02-12 13:03:14'),
+(71,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"a0cac610-3c77-4352-a43b-c35a8a29159e\"}','0','','2022-02-12 16:43:43'),
+(72,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"16c879d1-1687-4913-943d-f6ea90990641\"}','0','','2022-02-14 10:47:22'),
+(73,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"33556da2-736f-4665-b38b-4def2df2c764\"}','0','','2022-02-16 09:29:25'),
+(74,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"8a5371e9-ad66-4b70-bd06-7a2273396e86\"}','0','','2022-02-16 11:13:48'),
+(75,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"0f9e7508-032f-46d6-b119-bbb2be7e3663\"}','0','','2022-02-16 11:30:06'),
+(76,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"ae8bb43d-dc2d-4a09-8685-968f1f847221\"}','0','','2022-02-16 12:03:27'),
+(77,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"01d1d8a3-8a9a-4f9e-9768-420498e0e40b\"}','0','','2022-02-16 13:41:52'),
+(78,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"049ceab0-c8d4-4020-b25d-d132eaf13e43\"}','0','','2022-02-16 16:08:50'),
+(79,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"e917a360-f651-4f49-b2a5-2995b6cc19b1\"}','0','','2022-02-16 17:17:56'),
+(80,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"d5ed7a14-4eef-40fc-9ca5-6fbf4d881001\"}','0','','2022-02-16 18:52:52'),
+(81,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"17a75746-499f-439b-a540-f1080b306b90\"}','0','','2022-02-16 19:50:34'),
+(82,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"c1ee7049-26e9-41c2-99c4-d6e9274b6bb0\"}','0','','2022-02-17 09:49:50'),
+(83,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"1be763ad-e9d2-404b-aedb-aaf49745b8a8\"}','0','','2022-02-17 10:46:25'),
+(84,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"1e573ca3-63db-4f32-bbb9-cbf82e6bc03d\"}','0','','2022-02-17 12:24:51'),
+(85,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"41c21c37-ab03-4b7c-9392-97f90404b9ca\"}','0','','2022-02-17 14:34:39'),
+(86,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"68542127-7f95-4b68-a6bb-e8a69b5f4010\"}','0','','2022-02-17 15:21:57'),
+(87,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"a3fca658-2159-4b10-8723-c40b1948b300\"}','0','','2022-02-17 16:44:08'),
+(88,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"9a68849a-719b-4c43-a70e-d8938eb12e61\"}','0','','2022-02-18 09:36:24'),
+(89,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"64698eaf-5d78-4816-a44a-19902e45d1c2\"}','0','','2022-02-18 09:55:20'),
+(90,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"921370c7-0d82-4a18-a7b7-d3cc79a768ed\"}','0','','2022-02-18 11:14:50'),
+(91,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"450e5863-9239-445d-8ea7-96e33657de75\"}','0','','2022-02-18 14:32:38'),
+(92,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"22807000-bf0e-41be-83f4-f635462dada2\"}','0','','2022-02-18 17:30:38'),
+(93,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"3511c6bc-f0db-4d8d-bd34-55d0c8dd86de\"}','0','','2022-02-18 20:13:52'),
+(94,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"6c5ea1f4-2b65-4921-b64d-cdbba6e88ab8\"}','0','','2022-02-19 11:03:22'),
+(95,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"42a11526-94cb-49c4-b05f-de01173fc152\"}','0','','2022-02-19 13:30:23'),
+(96,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"188b654c-a2a6-494c-bad4-52d458f9b6e5\"}','0','','2022-02-19 22:45:38'),
+(97,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"20a7fe87-d689-4a88-b111-cd888169ca00\"}','0','','2022-02-19 22:45:50'),
+(98,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"6cd06ed3-cf76-4644-b738-81f4f29352ec\"}','0','','2022-02-19 22:46:12'),
+(99,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"110f400d-0e79-444b-9ec1-03e9ea620291\"}','0','','2022-02-19 22:46:26'),
+(100,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"40106e8f-30ec-4573-894f-55184691b956\"}','0','','2022-02-19 22:47:54'),
+(101,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"70f97262-10f8-4557-9494-372b24b68184\"}','0','','2022-02-19 22:48:16'),
+(102,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"59f2c1db-2dca-4ced-84b3-fd0a5cc1759c\"}','0','','2022-02-19 22:48:47'),
+(103,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"03ed9e40-7ef7-41f3-b38a-f26cffc7da49\"}','0','','2022-02-19 22:51:27'),
+(104,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"fe42a344-6eac-4e87-8b93-1f05ae089300\"}','0','','2022-02-19 22:51:35'),
+(105,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"48029d5d-e402-40c6-b6c1-63de9d3058f8\"}','0','','2022-02-19 22:51:41'),
+(106,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"0e1ab39f-71c2-488d-986f-5e7cab71d469\"}','0','','2022-02-21 09:39:16'),
+(107,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"10f4b304-9893-42e1-a8b8-8a498e186f53\"}','0','','2022-02-21 09:39:17'),
+(108,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"76596224-8d59-4aee-8789-709e65010688\"}','0','','2022-02-21 09:39:50'),
+(109,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"e7065c2b-0050-4a34-9733-35140e20535f\"}','0','','2022-02-21 09:41:44'),
+(110,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"3c2c9ea0-4061-4486-ad55-cd2171f09afd\"}','0','','2022-02-21 09:41:56'),
+(111,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"5004c66f-4a01-407b-9e0a-6ce816e0d88b\"}','0','','2022-02-21 09:51:43'),
+(112,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"20efda92-2563-4400-be56-ebc9134d2b72\"}','0','','2022-02-21 12:16:39'),
+(113,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"9024e83c-ea35-4ca4-9cd1-b1bf42e1ffdf\"}','0','','2022-02-21 13:40:25'),
+(114,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"bef195d0-4b92-42f5-84cc-2b10b952613f\"}','0','','2022-02-21 13:44:33'),
+(115,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"2a53198c-84dc-469a-ae93-89580c1105f6\"}','0','','2022-02-21 14:22:51'),
+(116,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"8397d34f-1a31-49ad-a09c-34e182e4d55f\"}','0','','2022-02-21 15:10:44'),
+(117,'用户登录','1','com.itbaizhan.openhis.controller.system.LoginController.login()','POST',1,'扁鹊','/login/doLogin','127.0.0.1','内网IP','{\"password\":\"001001\",\"username\":\"13888001001\"}','{\"msg\":\"操作成功\",\"code\":200,\"token\":\"857d7d98-361f-4117-9d40-00b7b8850c5b\"}','0','','2022-02-22 09:35:25');
+
+/*Table structure for table `sys_registered_item` */
+
+DROP TABLE IF EXISTS `sys_registered_item`;
+
+CREATE TABLE `sys_registered_item` (
+  `reg_item_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '挂号项ID',
+  `reg_item_name` varchar(50) DEFAULT NULL COMMENT '挂号项目名称',
+  `reg_item_fee` decimal(10,2) DEFAULT NULL COMMENT '金额',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态（0正常 1停用）',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0正常 1删除）',
+  PRIMARY KEY (`reg_item_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+/*Data for the table `sys_registered_item` */
+
+insert  into `sys_registered_item`(`reg_item_id`,`reg_item_name`,`reg_item_fee`,`create_time`,`update_time`,`create_by`,`update_by`,`status`,`del_flag`) values 
+(1,'门诊',6.00,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0','0'),
+(2,'门诊+病例本',7.00,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0','0'),
+(3,'急诊',12.00,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0','0'),
+(4,'急诊+病例本',13.00,'2030-01-01 00:00:00','2030-01-01 00:00:00','超级管理员','','0','0');
+
+/*Table structure for table `sys_role` */
+
+DROP TABLE IF EXISTS `sys_role`;
+
+CREATE TABLE `sys_role` (
+  `role_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+  `role_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色名称',
+  `role_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '角色权限编码',
+  `role_sort` int(4) NOT NULL COMMENT '显示顺序',
+  `remark` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '备注',
+  `status` char(1) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色状态（0正常 1停用）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `del_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+  PRIMARY KEY (`role_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='角色信息表';
+
+/*Data for the table `sys_role` */
+
+insert  into `sys_role`(`role_id`,`role_name`,`role_code`,`role_sort`,`remark`,`status`,`create_time`,`update_time`,`create_by`,`update_by`,`del_flag`) values 
+(1,'管理员','role:admin',2,'管理员','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','扁鹊','0'),
+(2,'医生','role:doctor',2,'普通角色','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','0'),
+(3,'护士','role:nurse',2,'普通角色','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','0'),
+(4,'挂号员','role:ghy',4,'普通角色','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','0'),
+(5,'收费员','role:sfy',5,'普通角色','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','0'),
+(6,'发药员','role:fyy',6,'普通角色','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','0'),
+(7,'财务','role:cw',7,'普通角色','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','0'),
+(8,'其他人员','role:other',8,'普通角色','0','2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','0');
+
+/*Table structure for table `sys_role_menu` */
+
+DROP TABLE IF EXISTS `sys_role_menu`;
+
+CREATE TABLE `sys_role_menu` (
+  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
+  PRIMARY KEY (`role_id`,`menu_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='角色和菜单关联表';
+
+/*Data for the table `sys_role_menu` */
+
+insert  into `sys_role_menu`(`role_id`,`menu_id`) values 
+(2,1),
+(2,2),
+(2,7),
+(2,8),
+(2,9),
+(2,10),
+(2,11),
+(2,12),
+(2,13),
+(2,14),
+(2,15),
+(2,16),
+(2,17),
+(2,18),
+(2,19),
+(2,20),
+(2,21),
+(3,2),
+(3,7),
+(4,1),
+(4,7),
+(4,8),
+(4,9),
+(4,10);
+
+/*Table structure for table `sys_role_user` */
+
+DROP TABLE IF EXISTS `sys_role_user`;
+
+CREATE TABLE `sys_role_user` (
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  PRIMARY KEY (`user_id`,`role_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户和角色关联表';
+
+/*Data for the table `sys_role_user` */
+
+insert  into `sys_role_user`(`user_id`,`role_id`) values 
+(2,2),
+(2,4),
+(3,6),
+(3,7),
+(4,6),
+(4,7),
+(4,8),
+(8,3),
+(8,4),
+(8,5);
+
+/*Table structure for table `sys_sms_log` */
+
+DROP TABLE IF EXISTS `sys_sms_log`;
+
+CREATE TABLE `sys_sms_log` (
+  `id` bigint(22) NOT NULL COMMENT '表id',
+  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机号',
+  `create_time` datetime DEFAULT NULL COMMENT '发送时间',
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '验证码',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '0.发送成功1发送失败',
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '0注册验证码，1，挂号提醒',
+  `error_info` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '发送失败的错误信息',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='短息发送记录表';
+
+/*Data for the table `sys_sms_log` */
+
+/*Table structure for table `sys_user` */
+
+DROP TABLE IF EXISTS `sys_user`;
+
+CREATE TABLE `sys_user` (
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `dept_id` bigint(20) DEFAULT NULL COMMENT '部门ID',
+  `user_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户账号',
+  `user_type` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '用户类型（0超级用户为 1为系统用户）',
+  `sex` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
+  `age` int(11) DEFAULT NULL COMMENT '年龄',
+  `picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '头像',
+  `background` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '学历 sys_dict_type:sys_user_background',
+  `phone` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '电话',
+  `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '用户邮箱',
+  `strong` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '擅长',
+  `honor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '荣誉',
+  `introduction` text COLLATE utf8mb4_unicode_ci COMMENT '简介',
+  `user_rank` char(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '\r\n医生级别sys_dict_type:sys_user_level',
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '密码',
+  `last_login_time` datetime DEFAULT NULL COMMENT '最后一次登录时间',
+  `last_login_ip` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '最后登陆IP',
+  `status` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+  `union_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `open_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户授权登录openid 扩展第三方登陆使用',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
+  `update_by` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',
+  `salt` varchar(35) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '盐',
+  `del_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '删除标志（0正常 1删除）',
+  `scheduling_flag` char(1) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '是否需要参与排班0需要,1 不需要',
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='用户信息表';
+
+/*Data for the table `sys_user` */
+
+insert  into `sys_user`(`user_id`,`dept_id`,`user_name`,`user_type`,`sex`,`age`,`picture`,`background`,`phone`,`email`,`strong`,`honor`,`introduction`,`user_rank`,`password`,`last_login_time`,`last_login_ip`,`status`,`union_id`,`open_id`,`create_time`,`update_time`,`create_by`,`update_by`,`salt`,`del_flag`,`scheduling_flag`) values 
+(1,109,'超级管理员','0','0',108,'','1','110','admin@163.com','全科','神医','医学奇才','3','47a42ee6006fdf69e53de74cfe29072d','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','admin','admin','e10adc3949ba59abbe56e057f20f883e','0','1'),
+(2,101,'扁鹊','1','1',22,'http://192.168.1.8:8888/group1/M00/00/00/wKiLgGHWVoWAT5PvAAA3KBvIECc467.jpg','1','13888001001','his1@163.com','全科','神医','医学奇才','1','02f80d33e1e8aad07fa46280b36d0522','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2022-02-21 09:41:31','admin','超级管理员','81BF9FF7C91B47A491B76615E408E234','0','0'),
+(3,102,'李时珍','1','1',18,'http://192.168.1.8:8888/group1/M00/00/00/wKiLgGHWVoWAT5PvAAA3KBvIECc467.jpg','2','13888001002','his2@163.com','全科','神医','医学奇才','1','22bfff2d6c6f634099c514c486f63b21','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2022-02-21 09:41:36','admin','超级管理员','E9B9314DFF8B4E86AC3207BF29563E27','0','0'),
+(4,103,'孙思邈','1','1',16,'','3','13888001003','his3@163.com','全科','神医','医学奇才','1','8f01277cea0b5db28e6558444cc7987d','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','admin','超级管理员','19035F127290470C8F533FE2FABCA3EE','0','0'),
+(5,104,'华佗','1','1',22,'','4','13888001004','his4@163.com','全科','神医','医学奇才','1','520a5b05dbec9f937f70092e088058e8','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','admin','超级管理员','91D53B3C4B8E40C7BA3613E41546AAE1','0','0'),
+(6,105,'皇甫谧','1','1',36,'','5','13888001005','his5@163.com','全科','神医','医学奇才','2','febeb7fc90866cafa0349de7b0a336e7','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','admin','超级管理员','4EE266FA0935443B9AE3F131DDAF1C80','0','0'),
+(7,106,'林道飞','1','1',45,'','6','13888001006','his6@163.com','全科','神医','医学奇才','2','f303a4c24323dbb3210c90f2273da20b','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','admin','扁鹊','EC46A74E43414EE4A3600F60146096F4','0','1'),
+(8,107,'熊宗立','1','1',28,'','1','13888001007','his7@163.com','全科','神医','医学奇才','2','0aa3e471f4edb47bc5306cc886e0abb2','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','admin','超级管理员','9D2252E59A964D888DBD541162FFC1AE','0','1'),
+(9,108,'肖药儿','1','0',99,'','2','13888001008','his8@163.com','全科','神医','医学奇才','3','f632f71a773625cbe9d09f0dd405e681','2030-01-01 00:00:00','127.0.0.1','0',NULL,NULL,'2030-01-01 00:00:00','2030-01-01 00:00:00','admin','超级管理员','540D0770B6E84530A1983C95D70CD8FD','0','1');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

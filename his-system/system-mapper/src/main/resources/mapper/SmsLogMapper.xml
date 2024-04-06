@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itbaizhan.openhis.mapper.SmsLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.itbaizhan.openhis.domain.SmsLog">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="code" column="code" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="errorInfo" column="error_info" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,mobile,create_time,
+        code,status,type,
+        error_info
+    </sql>
+</mapper>
