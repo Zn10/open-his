@@ -9,7 +9,7 @@ public class TestPay {
         String totalAmount="100";
         String undiscountableAmount=null;
         String body="买药用的";
-        String notifyUrl="http://45314rh250.qicp.vip/pay/callback/"+outTradeNo;
+        String notifyUrl="https://rs453993kk0.vicp.fun/"+outTradeNo;
         Map<String, Object> map = PayService.pay(outTradeNo, subject, totalAmount, undiscountableAmount, body, notifyUrl);
         System.out.println(map);
     }
