@@ -73,7 +73,7 @@ public class DictDataServiceImpl extends ServiceImpl<DictDataMapper, DictData> i
     @Override
     public int deleteDictData(Long[] dictIds) {
         List<Long> ids = Arrays.asList(dictIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             return dictDataMapper.deleteBatchIds(ids);
         }else{
             return 0;

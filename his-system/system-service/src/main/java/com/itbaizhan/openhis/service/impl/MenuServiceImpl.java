@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -84,13 +84,13 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public boolean hasChildByMenuId(Long menuId) {
         Long count = menuMapper.queryChildCountByMenuId(menuId);
-        return count > 0?true:false;
+        return count > 0;
     }
 
     @Override
     public int deleteMenuById(Long menuId) {
         //删除sys_role_menu表中的数据
-        roleMapper.deleteRoleMenuByMenuIds(Arrays.asList(menuId));
+        roleMapper.deleteRoleMenuByMenuIds(Collections.singletonList(menuId));
         //删除sys_menu表中的数据
         return menuMapper.deleteById(menuId);
     }

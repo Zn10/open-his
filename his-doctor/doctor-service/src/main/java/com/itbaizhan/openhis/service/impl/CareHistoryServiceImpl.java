@@ -129,7 +129,7 @@ public class CareHistoryServiceImpl extends ServiceImpl<CareHistoryMapper, CareH
         QueryWrapper<CareOrderItem> wrapper = new QueryWrapper<>();
         wrapper.eq(CareOrderItem.COL_CO_ID,coId);
         List<CareOrderItem> careOrderItems = careOrderItemMapper.selectList(wrapper);
-        if(careOrderItems != null && careOrderItems.size() > 0){
+        if(careOrderItems != null && !careOrderItems.isEmpty()){
             //重新计算处方价格
             BigDecimal allAmount = new BigDecimal("0");
             for (CareOrderItem orderItem : careOrderItems) {
@@ -159,7 +159,7 @@ public class CareHistoryServiceImpl extends ServiceImpl<CareHistoryMapper, CareH
         QueryWrapper<CareOrderItem> wrapper = new QueryWrapper<>();
         wrapper.in(CareOrderItem.COL_ITEM_ID,itemIds);
         List<CareOrderItem> orderItems = careOrderItemMapper.selectList(wrapper);
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuffer = new StringBuilder();
         //2遍历orderItems
         for (CareOrderItem orderItem : orderItems) {
             int i = medicinesService.deductionMedicinesStorage(Long.valueOf(orderItem.getItemRefId())
@@ -174,7 +174,7 @@ public class CareHistoryServiceImpl extends ServiceImpl<CareHistoryMapper, CareH
                 orderChargeItem.setStatus(Constants.ORDER_DETAILS_STATUS_3);
                 orderChargeItemMapper.updateById(orderChargeItem);
             }else{
-                stringBuffer.append("【"+orderItem.getItemName()+"】发药失败\n");
+                stringBuffer.append("【").append(orderItem.getItemName()).append("】发药失败\n");
             }
         }
         if(StringUtils.isBlank(stringBuffer.toString())){

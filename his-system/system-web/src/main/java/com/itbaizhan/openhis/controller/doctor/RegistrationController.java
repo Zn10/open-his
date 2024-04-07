@@ -55,7 +55,7 @@ public class RegistrationController {
         String schedulingType = registrationQueryDto.getSchedulingType();   //排班类型 门诊、急诊
         String schedulingDay = registrationQueryDto.getSchedulingDay().substring(0,10); //日期
         List<Long> deptIds = schedulingService.queryHasSchedulingDeptIds(deptId,schedulingDay,schedulingType,subsectionType);
-        if(deptIds == null || deptIds.size() == 0){
+        if(deptIds == null || deptIds.isEmpty()){
             return AjaxResult.success(Collections.EMPTY_LIST);
         }else{
             List<Dept> list = deptService.listDeptByDeptIds(deptIds);

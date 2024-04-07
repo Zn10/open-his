@@ -56,7 +56,7 @@ public class LoginInfoServiceImpl extends ServiceImpl<LoginInfoMapper, LoginInfo
     @Override
     public int deleteLoginInfoByIds(Long[] infoIds) {
         List<Long> ids = Arrays.asList(infoIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             return this.loginInfoMapper.deleteBatchIds(ids);
         }else{
             return 0;

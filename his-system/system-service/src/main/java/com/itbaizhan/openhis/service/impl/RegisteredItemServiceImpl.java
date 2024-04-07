@@ -65,7 +65,7 @@ public class RegisteredItemServiceImpl extends ServiceImpl<RegisteredItemMapper,
     @Override
     public int deleteRegisteredItemByIds(Long[] registeredItemIds) {
         List<Long> ids = Arrays.asList(registeredItemIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             return registeredItemMapper.deleteBatchIds(ids);
         }
         return 0;

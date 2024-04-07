@@ -94,7 +94,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
     public int deleteRoleByIds(Long[] roleIds) {
         List<Long> ids = Arrays.asList(roleIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             //1、删除sys_role_menu表中的关联数据
             roleMapper.deleteRoleMenuByRoleIds(ids);
             //2、删除sys_role_user表中的关联数据

@@ -21,9 +21,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
-* @author a
-* @description 针对表【sys_dict_type(字典类型表)】的数据库操作Service实现
-*/
+ * @author a
+ * @description 针对表【sys_dict_type(字典类型表)】的数据库操作Service实现
+ */
 @Service
 public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> implements DictTypeService {
 
@@ -41,17 +41,17 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> i
         Page<DictType> page = new Page<>(dictTypeDto.getPageNum(), dictTypeDto.getPageSize());
         QueryWrapper<DictType> wrapper = new QueryWrapper<>();
         wrapper.like(StringUtils.isNotBlank(dictTypeDto.getDictName()),
-                DictType.COL_DICT_NAME,dictTypeDto.getDictName());
+                DictType.COL_DICT_NAME, dictTypeDto.getDictName());
         wrapper.like(StringUtils.isNotBlank(dictTypeDto.getDictType()),
-                DictType.COL_DICT_TYPE,dictTypeDto.getDictType());
+                DictType.COL_DICT_TYPE, dictTypeDto.getDictType());
         wrapper.eq(StringUtils.isNotBlank(dictTypeDto.getStatus()),
-                DictType.COL_STATUS,dictTypeDto.getStatus());
-        wrapper.ge(dictTypeDto.getBeginTime()!=null,
-                DictType.COL_CREATE_TIME,dictTypeDto.getBeginTime());
-        wrapper.le(dictTypeDto.getEndTime()!=null,
-                DictType.COL_CREATE_TIME,dictTypeDto.getEndTime());
-        dictTypeMapper.selectPage(page,wrapper);
-        return new DataGridView(page.getTotal(),page.getRecords());
+                DictType.COL_STATUS, dictTypeDto.getStatus());
+        wrapper.ge(dictTypeDto.getBeginTime() != null,
+                DictType.COL_CREATE_TIME, dictTypeDto.getBeginTime());
+        wrapper.le(dictTypeDto.getEndTime() != null,
+                DictType.COL_CREATE_TIME, dictTypeDto.getEndTime());
+        dictTypeMapper.selectPage(page, wrapper);
+        return new DataGridView(page.getTotal(), page.getRecords());
     }
 
     @Override
@@ -61,13 +61,13 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> i
         List<DictType> dictTypes = dictTypeMapper.selectList(wrapper);
         for (DictType dictType : dictTypes) {
             QueryWrapper<DictData> wrapper1 = new QueryWrapper<>();
-            wrapper1.eq(DictData.COL_STATUS,Constants.STATUS_TRUE);
-            wrapper1.eq(DictData.COL_DICT_TYPE,dictType.getDictType());
+            wrapper1.eq(DictData.COL_STATUS, Constants.STATUS_TRUE);
+            wrapper1.eq(DictData.COL_DICT_TYPE, dictType.getDictType());
             wrapper1.orderByAsc(DictData.COL_DICT_SORT);
             List<DictData> dataList = dictDataMapper.selectList(wrapper1);
             String jsonString = JSON.toJSONString(dataList);
             ValueOperations<String, String> value = redisTemplate.opsForValue();
-            value.set(Constants.DICT_REDIS_PREFIX + dictType.getDictType(),jsonString);
+            value.set(Constants.DICT_REDIS_PREFIX + dictType.getDictType(), jsonString);
         }
 
     }

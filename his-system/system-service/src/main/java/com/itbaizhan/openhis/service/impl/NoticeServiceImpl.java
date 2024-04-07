@@ -64,7 +64,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
     @Override
     public int deleteNoticeByIds(Long[] noticeIds) {
         List<Long> ids = Arrays.asList(noticeIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             return noticeMapper.deleteBatchIds(ids);
         }
         return 0;

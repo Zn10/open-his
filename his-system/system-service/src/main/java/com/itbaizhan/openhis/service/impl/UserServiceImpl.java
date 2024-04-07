@@ -84,7 +84,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public int deleteUserByIds(Long[] userIds) {
         List<Long> ids = Arrays.asList(userIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             return userMapper.deleteBatchIds(ids);
         }
         return 0;

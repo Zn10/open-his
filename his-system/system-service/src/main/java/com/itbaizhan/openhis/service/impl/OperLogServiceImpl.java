@@ -49,7 +49,7 @@ public class OperLogServiceImpl extends ServiceImpl<OperLogMapper, OperLog> impl
     @Override
     public int deleteOperLogByIds(Long[] infoIds) {
         List<Long> ids = Arrays.asList(infoIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             return operLogMapper.deleteBatchIds(ids);
         }
         return 0;
