@@ -1,5 +1,7 @@
 package com.itbaizhan.openhis.constants;
 
+import lombok.Getter;
+
 /**
  * 状态码定义：
  * <br/>
@@ -22,6 +24,7 @@ package com.itbaizhan.openhis.constants;
  * </tr>
  * </table>
  */
+@Getter
 public enum ResultCode {
 
     /**
@@ -85,8 +88,8 @@ public enum ResultCode {
 	
     FLOW_SENTINEL_ERROR(508, "当前访问人数较多，请稍后重试");
 	
-    private int state;
-    private String message;
+    private final int state;
+    private final String message;
 
     ResultCode(int state) {
         this(state, null);
@@ -95,14 +98,6 @@ public enum ResultCode {
     ResultCode(int state, String message) {
         this.state = state;
         this.message = message;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
 }

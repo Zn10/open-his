@@ -20,7 +20,7 @@ public class DeptController {
 
     /**
      * 分页查询科室
-     * @param deptDto
+     * @param deptDto dto参数
      * @return
      */
     @GetMapping("listDeptForPage")
@@ -31,7 +31,7 @@ public class DeptController {
 
     /**
      * 添加科室
-     * @param deptDto
+     * @param deptDto dto参数
      * @return
      */
     @PostMapping("addDept")
@@ -42,7 +42,7 @@ public class DeptController {
 
     /**
      * 修改科室
-     * @param deptDto
+     * @param deptDto dto参数
      * @return
      */
     @PutMapping("updateDept")

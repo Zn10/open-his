@@ -9,6 +9,7 @@ import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.security.cert.X509Certificate;
 
 /**
@@ -180,9 +181,9 @@ public class HttpUtils {
             String ret = "";
             while ((ret = br.readLine()) != null)
             {
-                if (ret != null && !ret.trim().equals(""))
+                if (!ret.trim().isEmpty())
                 {
-                    result.append(new String(ret.getBytes("ISO-8859-1"), "utf-8"));
+                    result.append(new String(ret.getBytes(StandardCharsets.ISO_8859_1), "utf-8"));
                 }
             }
             log.info("recv - {}", result);
@@ -251,8 +252,8 @@ public class HttpUtils {
 
         String result = "";
         try {
-            OutputStreamWriter out = null;
-            BufferedReader in = null;
+            OutputStreamWriter out;
+            BufferedReader in;
             URL realUrl = new URL(url);
             URLConnection conn = realUrl.openConnection();
 
@@ -295,8 +296,8 @@ public class HttpUtils {
     public static String postHuiDiao(String url, String body) {
         String result = "";
         try {
-            OutputStreamWriter out = null;
-            BufferedReader in = null;
+            OutputStreamWriter out;
+            BufferedReader in;
             URL realUrl = new URL(url);
             URLConnection conn = realUrl.openConnection();
 
