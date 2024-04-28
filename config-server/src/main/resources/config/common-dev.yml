@@ -19,7 +19,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.200.128:8848
+        server-addr: localhost:8848
         service: aaa
     sentinel:
       transport:
@@ -28,7 +28,7 @@ spring:
 #dubbo配置
 dubbo:
   registry:
-    address: nacos://192.168.200.128:8848
+    address: nacos://localhost:8848
     timeout: 10000
   protocol:
     name: dubbo
