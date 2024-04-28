@@ -5,10 +5,10 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.itbaizhan.openhis.MedicinesService;
 import com.itbaizhan.openhis.mapper.MedicinesMapper;
 import com.itbaizhan.openhis.domain.Medicines;
 import com.itbaizhan.openhis.dto.MedicinesDto;
+import com.itbaizhan.openhis.service.MedicinesService;
 import com.itbaizhan.openhis.vo.DataGridView;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
@@ -73,7 +73,7 @@ public class MedicinesServiceImpl extends ServiceImpl<MedicinesMapper, Medicines
     @Override
     public int deleteMedicinesByIds(Long[] medicinesIds) {
         List<Long> ids = Arrays.asList(medicinesIds);
-        if(ids != null && ids.size() > 0){
+        if(!ids.isEmpty()){
             return medicinesMapper.deleteBatchIds(ids);
         }
         return 0;

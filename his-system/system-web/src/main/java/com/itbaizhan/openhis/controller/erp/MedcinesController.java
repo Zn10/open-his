@@ -1,7 +1,7 @@
 package com.itbaizhan.openhis.controller.erp;
 
 import com.itbaizhan.openhis.dto.MedicinesDto;
-import com.itbaizhan.openhis.MedicinesService;
+import com.itbaizhan.openhis.service.MedicinesService;
 import com.itbaizhan.openhis.vo.AjaxResult;
 import com.itbaizhan.openhis.vo.DataGridView;
 import com.itbaizhan.openhis.utils.ShiroSecurityUtils;

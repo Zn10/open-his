@@ -10,9 +10,9 @@ spring:
       uri: http://localhost:9006
     nacos:
       discovery:
-        server-addr: 192.168.200.128:8848
+        server-addr: localhost:8848
       config:
-        server-addr: 192.168.200.128:8848
+        server-addr: localhost:8848
     sentinel:
       datasource:
         flow:
