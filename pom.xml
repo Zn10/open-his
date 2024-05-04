@@ -17,8 +17,7 @@
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>2.2.6.RELEASE</version>
-        <relativePath></relativePath>
+        <version>2.3.6.RELEASE</version>
     </parent>
     <groupId>com.itbaizhan.openhis</groupId>
     <artifactId>open-his</artifactId>
@@ -28,11 +27,11 @@
     <properties>
         <java.version>1.8</java.version>
         <shiro-boot.version>1.5.3</shiro-boot.version>
-        <mybatis-plus.version>3.3.1.tmp</mybatis-plus.version>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
         <fastdfs.version>1.26.7</fastdfs.version>
         <shiro-redis.version>3.2.3</shiro-redis.version>
-        <fasjson.version>1.2.62</fasjson.version>
-        <hutool.version>5.1.1</hutool.version>
+        <fasjson.version>1.2.83</fasjson.version>
+        <hutool.version>5.8.21</hutool.version>
         <bitwalker.version>1.19</bitwalker.version>
         <dubbo.version>2.7.5</dubbo.version>
     </properties>
