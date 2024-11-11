@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>ophis-common</module>
+        <module>openhis-gateway</module>
     </modules>
 
     <parent>
@@ -14,7 +15,7 @@
         <version>2.3.6.RELEASE</version>
     </parent>
 
-    <groupId>com.itbaizhan.openhis</groupId>
+    <groupId>com.zn.openhis</groupId>
     <artifactId>open-his</artifactId>
     <version>1.0</version>
     <description>门诊管理系统</description>
@@ -41,6 +42,9 @@
         <pool2.version>2.6.0</pool2.version>
         <httpclient.version>4.5.13</httpclient.version>
         <minio.version>8.2.0</minio.version>
+        <docker.image>docker_storage</docker.image>
+        <logstash.version>5.1</logstash.version>
+        <alipay-sdk-java.version>4.8.73.ALL</alipay-sdk-java.version>
     </properties>
 
     <dependencyManagement>
@@ -135,6 +139,16 @@
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay-sdk-java.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
