@@ -3,20 +3,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.openhis</groupId>
-        <artifactId>ophis-common</artifactId>
+        <artifactId>openhis-common</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>openhis-common-entity</artifactId>
+    <artifactId>openhis-common-util</artifactId>
     <packaging>jar</packaging>
 
-    <name>openhis-common-entity</name>
+    <name>openhis-common-util</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-
     </dependencies>
 </project>

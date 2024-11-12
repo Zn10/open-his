@@ -8,7 +8,7 @@
     </parent>
 
     <groupId>com.openhis</groupId>
-    <artifactId>ophis-common</artifactId>
+    <artifactId>openhis-common</artifactId>
     <packaging>pom</packaging>
 
     <name>ophis-common</name>
