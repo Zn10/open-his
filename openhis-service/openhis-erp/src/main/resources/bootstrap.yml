@@ -1,0 +1,17 @@
+spring:
+    application:
+        name: openhis-erp
+    cloud:
+        nacos:
+            config:
+                file-extension: yaml
+                prefix: ${spring.application.name}-@spring.active@.yaml
+                server-addr: openhis-nacos:8848
+                timeout: 50000
+                namespace: openhis
+                refresh-enabled: true
+            discovery:
+                server-addr: openhis-nacos:8848
+                namespace: openhis
+    profiles:
+        active: @spring.active@
