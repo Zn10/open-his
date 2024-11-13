@@ -2,13 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.openhis</groupId>
+        <groupId>com.zn.openhis</groupId>
         <artifactId>openhis-common</artifactId>
         <version>1.0</version>
     </parent>
 
     <artifactId>openhis-common-entity</artifactId>
-    <packaging>jar</packaging>
 
     <name>openhis-common-entity</name>
 
@@ -17,6 +16,20 @@
     </properties>
 
     <dependencies>
-
+        <!--mybatis-plus-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <scope>provided </scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <scope>provided </scope>
+        </dependency>
     </dependencies>
 </project>
