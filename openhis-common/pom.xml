@@ -10,8 +10,9 @@
     <artifactId>openhis-common</artifactId>
     <packaging>pom</packaging>
 
-    <name>ophis-common</name>
+    <name>openhis-common</name>
     <modules>
+        <module>openhis-common-rocketmq-util</module>
         <module>openhis-common-service-util</module>
         <module>openhis-common-entity</module>
         <module>openhis-common-util</module>
