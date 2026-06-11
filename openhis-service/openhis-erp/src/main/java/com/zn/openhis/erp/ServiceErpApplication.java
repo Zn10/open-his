@@ -21,7 +21,7 @@ public class ServiceErpApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceErpApplication.class, args);
-        log.info("用户服务启动成功");
+        log.info("ERP服务启动成功");
     }
 
 }

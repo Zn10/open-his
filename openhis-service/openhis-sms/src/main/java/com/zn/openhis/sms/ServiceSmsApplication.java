@@ -13,15 +13,15 @@ import org.springframework.context.annotation.ComponentScan;
  * @create-date: 2023/2/11/14:06
  */
 @SpringBootApplication
-@ComponentScan({"com.zn.gmall"})
+@ComponentScan({"com.zn.openhis"})
 @EnableDiscoveryClient
 @Slf4j
-@MapperScan("com.zn.gmall.*.mapper")
+@MapperScan("com.zn.openhis.*.mapper")
 public class ServiceSmsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceSmsApplication.class, args);
-        log.info("用户服务启动成功");
+        log.info("SMS服务启动成功");
     }
 
 }
